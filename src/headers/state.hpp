@@ -14,5 +14,7 @@ struct GameState {
 
 GameState random_state();
 void update_state(GameState* game_state, KeyEvents keys);
+void update_heading(GameState* game_state, KeyEvents keys);
+void update_head_position(GameState* game_state);
 
 #endif

@@ -23,12 +23,11 @@ clean:
 format:
 	astyle                       \
 	--style=java                 \
-	--max-code-length=88         \
-	--delete-empty-lines         \
+	--max-code-length=100        \
 	--break-closing-braces       \
 	--suffix=none                \
 	--indent-switches            \
 	--indent-cases               \
 	--break-blocks               \
-	--max-continuation-indent=50 \
+	--indent-continuation=1      \
 	src/*.cpp src/headers/*.hpp 

@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include "draw.hpp"
 
-bool init_sdl(SDL_Window* window, SDL_Renderer* renderer);
+bool init_sdl(SDL_Window** window, SDL_Renderer** renderer);
 void close_sdl(SDL_Window* window, SDL_Renderer* renderer);
 
 const int init_width = n_horizontal * side;
