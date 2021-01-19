@@ -1,4 +1,6 @@
 #include "headers/draw.hpp"
+#include "headers/state.hpp"
+#include "headers/colours.hpp"
 #include "headers/lifecycle.hpp"
 
 bool init_draw(SDL_Surface** surface) {
@@ -18,8 +20,9 @@ bool init_draw(SDL_Surface** surface) {
 
 void paint_texture(SDL_Surface* surface, SDL_Renderer* renderer, GameState game_state) {
     draw_grid(surface);
-    draw_head(surface, game_state.head_x, game_state.head_y);
-    draw_bean(surface, game_state.bean_x, game_state.bean_y);
+    draw_head(surface, game_state.head);
+    draw_tail(surface, game_state.tail);
+    draw_bean(surface, game_state.bean);
 
     SDL_Texture* texture = SDL_CreateTextureFromSurface(
                                renderer, surface
@@ -38,45 +41,53 @@ void paint_texture(SDL_Surface* surface, SDL_Renderer* renderer, GameState game_
 }
 
 void draw_grid(SDL_Surface* surface) {
-    SDL_Rect rect;
-    rect.w = side;
-    rect.h = side;
+    RGB rgb;
+    Position pos;
 
-    for (int i = 0; i < n_vertical; i++) {
-        for (int j = 0; j < n_horizontal; j++) {
-            rect.x = i * side;
-            rect.y = j * side;
-
-            int r = 100 * ((j + i + 1) % 2);
-            int g = 50;
-            int b = 100 * ((j + i) % 2);
-
-            SDL_FillRect(surface, &rect,
-                         SDL_MapRGB(surface->format, r, g, b));
+    for (int i = 0; i < n_vertical; ++i) {
+        for (int j = 0; j < n_horizontal; ++j) {
+            pos.x = i;
+            pos.y = j;
+            init_greyscale(&rgb, 120 + 20 * ((j + i) % 2));
+            draw_rect_at_position(surface, pos, rgb);
         }
     }
 }
 
-void draw_head(SDL_Surface* surface, int head_x,
-               int head_y) {
-    SDL_Rect rect;
-    rect.x = head_x * side;
-    rect.y = head_y * side;
-    rect.w = side;
-    rect.h = side;
-    SDL_FillRect(surface, &rect,
-                 SDL_MapRGB(surface->format, 255, 0, 0));
+void draw_head(SDL_Surface* surface, Position head) {
+    RGB rgb;
+    init_colour(&rgb, 20, 120, 20);
+    draw_rect_at_position(surface, head, rgb);
 }
 
-void draw_bean(SDL_Surface* surface, int bean_x,
-               int bean_y) {
+void draw_tail(SDL_Surface* surface, std::vector<Position> tail) {
+    RGB rgb;
+    init_colour(&rgb, 20, 100, 20);
+
+    for (Position tail_piece: tail) {
+        draw_rect_at_position(surface, tail_piece, rgb);
+    }
+}
+
+void draw_bean(SDL_Surface* surface, Position bean) {
+    RGB rgb;
+    init_colour(&rgb, 0, 50, 180);
+    draw_rect_at_position(surface, bean, rgb);
+}
+
+void draw_rect_at_position(SDL_Surface* surface, Position pos, RGB rgb) {
     SDL_Rect rect;
-    rect.x = bean_x * side;
-    rect.y = bean_y * side;
-    rect.w = side;
-    rect.h = side;
+    init_rect(&rect, pos.x * side, pos.y * side, side, side);
     SDL_FillRect(surface, &rect,
-                 SDL_MapRGB(surface->format, 0, 255, 0));
+                 SDL_MapRGB(surface->format, rgb.r, rgb.g, rgb.b));
+}
+
+void init_rect(SDL_Rect* rect, int x, int y,
+               int w, int h) {
+    rect->x = x;
+    rect->y = y;
+    rect->w = w;
+    rect->h = h;
 }
 
 void close_draw(SDL_Surface* surface) {

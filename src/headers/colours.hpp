@@ -7,6 +7,7 @@ struct RGB {
     int b;
 };
 
-void initColour();
+void init_greyscale(struct RGB* rgb, int grey);
+void init_colour(struct RGB* rgb, int r, int g, int b);
 
 #endif

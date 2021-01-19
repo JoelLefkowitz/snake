@@ -2,7 +2,7 @@ CC = g++
 ODIR = obj
 SDIR = src
 OUT = snake
-INC = -Iinc
+INC = -Iinc -std=c++11
 LIBS = -lSDL2
 
 SRCS = $(wildcard $(SDIR)/*.cpp)

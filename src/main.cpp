@@ -1,4 +1,5 @@
 #include <iostream>
+#include "headers/main.hpp"
 #include "headers/lifecycle.hpp"
 #include "headers/inputs.hpp"
 #include "headers/state.hpp"
@@ -10,9 +11,15 @@ int main( int argc, char* args[] ) {
     SDL_Renderer* renderer = nullptr;
     bool quit = !(init_sdl(&window, &renderer) && init_draw(&surface));
 
+    // Put STEP event on a timer
+    SDL_AddTimer(step_interval, push_step_event, NULL);
+
+    // Seed rand outside of state functions
+    srand (time(NULL));
+
     SDL_Event event;
     KeyEvents keys;
-    GameState game_state = random_state();
+    GameState game_state = init_state();
 
     while (!quit) {
         while (SDL_PollEvent(&event)) {
@@ -20,18 +27,33 @@ int main( int argc, char* args[] ) {
                 quit = true;
             }
 
-            if (event.type == SDL_KEYDOWN) {
+            else if (event.type == SDL_KEYDOWN) {
                 keys = handle_keys(event);
             }
-        }
 
-        update_state(&game_state, keys);
-        paint_texture(surface, renderer, game_state);
-        SDL_Delay( 50 );
+            else if (event.type == STEP) {
+                update_state(&game_state, keys);
+                paint_texture(surface, renderer, game_state);
+
+                std::cout << game_state.score << std::endl;
+                std::cout << game_state.game_over << std::endl;
+
+                if (!game_state.game_over) {
+                    SDL_AddTimer(step_interval, push_step_event, NULL);
+                }
+            }
+        }
     }
 
     close_draw(surface);
     close_sdl(window, renderer);
+    return 0;
+}
+
+Uint32 push_step_event(Uint32 interval, void *param) {
+    SDL_Event event;
+    event.type = STEP;
+    SDL_PushEvent(&event);
     return 0;
 }
 
