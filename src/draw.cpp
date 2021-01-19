@@ -1,6 +1,34 @@
 #include <iostream>
 #include "headers/draw.hpp"
 
+void paint_surface(SDL_Window* window, SDL_Renderer* renderer, GameState game_state) {
+    int* width;
+    int* height;
+    SDL_GetWindowSize(window, width, height);
+    SDL_Surface* surface = SDL_CreateRGBSurface(0, *width, *height,
+                                                32, 0, 0, 0, 0);
+    draw_grid(surface);
+    draw_head(surface, game_state.head_x,
+              game_state.head_y);
+    draw_bean(surface, game_state.bean_x,
+              game_state.bean_y);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,
+                           surface);
+
+    if (!texture) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
+                     "Couldn't create texture from surface: %s",
+                     SDL_GetError());
+    }
+
+    SDL_FreeSurface(surface);
+    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00,
+                           0x00);
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, NULL, NULL);
+    SDL_RenderPresent(renderer);
+}
+
 void draw_grid(SDL_Surface* surface) {
     SDL_Rect rect;
     SDL_Rect* ptr;
@@ -9,7 +37,7 @@ void draw_grid(SDL_Surface* surface) {
     rect.y = 0;
     rect.w = side;
     rect.h = side;
-    
+
     for (int i = 0; i < n_vertical; i++) {
         for (int j = 0; j < n_horizontal; j++) {
             rect.x = i * side;
@@ -49,3 +77,4 @@ void draw_bean(SDL_Surface* surface, int bean_x,
     SDL_FillRect(surface, ptr,
                  SDL_MapRGB(surface->format, 0, 255, 0));
 }
+

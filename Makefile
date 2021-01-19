@@ -1,13 +1,12 @@
 CC = g++
 ODIR = obj
 SDIR = src
-OUT = output
-
+OUT = snake
 INC = -Iinc
 LIBS = -lSDL2
 
-_OBJS = main.o draw.o utils.o colours.o
-OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
+SRCS = $(wildcard $(SDIR)/*.cpp)
+OBJS = $(patsubst $(SDIR)/%.cpp,$(ODIR)/%.o,$(SRCS))
 
 $(ODIR)/%.o: $(SDIR)/%.cpp 
 	$(CC) -c $(INC) -o $@ $< $(CFLAGS) 
@@ -17,10 +16,19 @@ $(OUT): $(OBJS)
 
 .PHONY: clean 
 .PHONY: format
+
 clean:
 	rm -f $(ODIR)/*.o $(OUT)
 
 format:
-	astyle --style=java --max-code-length=50    \
-	--delete-empty-lines --break-closing-braces \
-	--suffix=none src/*.cpp src/headers/*.hpp
+	astyle                       \
+	--style=java                 \
+	--max-code-length=88         \
+	--delete-empty-lines         \
+	--break-closing-braces       \
+	--suffix=none                \
+	--indent-switches            \
+	--indent-cases               \
+	--break-blocks               \
+	--max-continuation-indent=50 \
+	src/*.cpp src/headers/*.hpp 

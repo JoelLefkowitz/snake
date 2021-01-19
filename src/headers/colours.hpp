@@ -1,3 +1,6 @@
+#ifndef COLOURS_H
+#define COLOURS_H
+
 struct RGB {
     int r;
     int g;
@@ -5,3 +8,5 @@ struct RGB {
 };
 
 void initColour();
+
+#endif
