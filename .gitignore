@@ -1,3 +1,9 @@
+# IDEs
+
+.vscode/
+# Builds
+snake
+
 # Prerequisites
 *.d
 
