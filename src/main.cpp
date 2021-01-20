@@ -1,4 +1,3 @@
-#include <iostream>
 #include "headers/main.hpp"
 #include "headers/lifecycle.hpp"
 #include "headers/inputs.hpp"
@@ -34,9 +33,6 @@ int main( int argc, char* args[] ) {
             else if (event.type == STEP) {
                 update_state(&game_state, keys);
                 paint_texture(surface, renderer, game_state);
-
-                std::cout << game_state.score << std::endl;
-                std::cout << game_state.game_over << std::endl;
 
                 if (!game_state.game_over) {
                     SDL_AddTimer(step_interval, push_step_event, NULL);

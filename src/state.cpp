@@ -1,4 +1,3 @@
-#include <iostream>
 #include "headers/state.hpp"
 #include "headers/draw.hpp"
 #include "headers/utils.hpp"
@@ -40,15 +39,15 @@ void update_heading(GameState* game_state, KeyEvents keys) {
         game_state->heading = 1;
     }
 
-    if (keys.right && game_state->heading != 4) {
+    else if (keys.right && game_state->heading != 4) {
         game_state->heading = 2;
     }
 
-    if (keys.down && game_state->heading != 1) {
+    else if (keys.down && game_state->heading != 1) {
         game_state->heading = 3;
     }
 
-    if (keys.left && game_state->heading != 2) {
+    else if (keys.left && game_state->heading != 2) {
         game_state->heading = 4;
     }
 }
