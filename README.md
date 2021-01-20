@@ -9,6 +9,10 @@ An SDL2 implementation of the classic game snake
 | Project    | ![license][license] ![release][release]                        |
 | Raised     | [![issues][issues]][issues_link] [![pulls][pulls]][pulls_link] |
 
+## Preview
+
+![Example usage][example_gif]
+
 ### Installing
 
 To build from source:
@@ -52,3 +56,5 @@ None yet!
 [issues_link]: https://github.com/JoelLefkowitz/snake/issues
 [pulls]: https://img.shields.io/github/issues-pr/joellefkowitz/snake "Pull requests"
 [pulls_link]: https://github.com/JoelLefkowitz/snake/pulls
+
+[example_gif]: https://github.com/JoelLefkowitz/snake/raw/master/preview.gif "Example usage"
