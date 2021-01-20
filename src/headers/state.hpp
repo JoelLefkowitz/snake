@@ -10,12 +10,13 @@ struct Position {
     int y;
 };
 
+enum Direction {UP, RIGHT, DOWN, LEFT};
 
 struct GameState {
     Position head;
     Position bean;
     std::vector<Position> tail;
-    int heading;
+    Direction heading;
     int score;
     bool game_over;
 };

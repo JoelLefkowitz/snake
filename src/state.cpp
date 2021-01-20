@@ -17,7 +17,7 @@ GameState init_state() {
     GameState game_state;
     game_state.head = random_position();
     game_state.bean = random_position();
-    game_state.heading = (rand() % 4) + 1;
+    game_state.heading = Direction((rand() % 4));
     game_state.score = 0;
     game_state.game_over = false;
     return game_state;
@@ -35,47 +35,47 @@ void update_state(GameState* game_state,
 
 
 void update_heading(GameState* game_state, KeyEvents keys) {
-    if (keys.up && game_state->heading != 3) {
-        game_state->heading = 1;
+    if (keys.up && game_state->heading != DOWN) {
+        game_state->heading = UP;
     }
 
-    else if (keys.right && game_state->heading != 4) {
-        game_state->heading = 2;
+    else if (keys.right && game_state->heading != LEFT) {
+        game_state->heading = RIGHT;
     }
 
-    else if (keys.down && game_state->heading != 1) {
-        game_state->heading = 3;
+    else if (keys.down && game_state->heading != UP) {
+        game_state->heading = DOWN;
     }
 
-    else if (keys.left && game_state->heading != 2) {
-        game_state->heading = 4;
+    else if (keys.left && game_state->heading != RIGHT) {
+        game_state->heading = LEFT;
     }
 }
 
 void update_head(GameState* game_state) {
     switch (game_state->heading) {
-        case 1:
+        case UP:
             game_state->head.y =
                 neg_modulo(
                     (game_state->head.y - 1), n_vertical
                 );
             break;
 
-        case 2:
+        case RIGHT:
             game_state->head.x =
                 neg_modulo((game_state->head.x
                             + 1),
                            n_horizontal);
             break;
 
-        case 3:
+        case DOWN:
             game_state->head.y =
                 neg_modulo((game_state->head.y
                             + 1),
                            n_vertical);
             break;
 
-        case 4:
+        case LEFT:
             game_state->head.x =
                 neg_modulo((game_state->head.x
                             - 1),
