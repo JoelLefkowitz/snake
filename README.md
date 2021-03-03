@@ -1,19 +1,25 @@
 # Snake
 
-An SDL2 implementation of the classic game snake
+An SDL2 implementation of the classic game Snake
 
-### Status
+## Status
 
-| Source     | Shields                                                        |
-| ---------- | -------------------------------------------------------------- |
-| Project    | ![license][license] ![release][release]                        |
-| Raised     | [![issues][issues]][issues_link] [![pulls][pulls]][pulls_link] |
+| Source     | Shields                                                                                                            |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ |
+| Project    | ![release][release_shield] ![license][license_shield] ![dependents][dependents_shield]                             |
+| Health     | ![travis][travis_shield] ![codacy][codacy_shield] ![coverage][coverage_shield] ![readthedocs][readthedocs_shield]  |
+| Repository | ![issues][issues_shield] ![pulls][pulls_shield]                                                                    |
+| Activity   | ![contributors][contributors_shield] ![monthly_commits][monthly_commits_shield] ![last_commit][last_commit_shield] |
 
 ## Preview
 
-![Example usage][example_gif]
+![Preview][preview]
 
-### Installing
+## Installation
+
+```bash
+git clone https://github.com/JoelLefkowitz/snake
+```
 
 To build from source:
 
@@ -21,9 +27,62 @@ To build from source:
 make
 ```
 
-### Versioning
+## Tests
 
-[SemVer](http://semver.org/) is used for versioning. For a list of versions available, see the tags on this repository.
+To run unit tests:
+
+```bash
+grunt tests:unit
+```
+
+To generate a coverage report:
+
+```bash
+grunt tests:coverage
+```
+
+## Documentation
+
+This repository's documentation is hosted on [readthedocs][readthedocs].
+
+To generate the sphinx configuration:
+
+```bash
+grunt docs:generate
+```
+
+Then build the documentation:
+
+```bash
+grunt docs:build
+```
+
+## Tooling
+
+To run linters:
+
+```bash
+grunt lint
+```
+
+To run formatters:
+
+```bash
+grunt format
+```
+
+Before commiting new code:
+
+```bash
+grunt precommit
+```
+
+This will run linters, formaters, generate a test coverage report and the sphinx configuration.
+
+## Versioning
+
+This repository adheres to semantic versioning standards.
+For more inforamtion on semantic versioning visit [SemVer][semver].
 
 Bump2version is used to version and tag changes.
 For example:
@@ -32,29 +91,64 @@ For example:
 bump2version patch
 ```
 
-Releases are made on every major change.
+## Changelog
 
-### Author
+Please read this repository's [CHANGELOG](CHANGELOG.md) for details on changes that have been made.
 
-- **Joel Lefkowitz** - _Initial work_ - [Joel Lefkowitz](https://github.com/JoelLefkowitz)
+## Contributing
 
-See also the list of contributors who participated in this project.
+Please read this repository's guidelines on [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-### License
+## Contributors
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+- **Joel Lefkowitz** - _Initial work_ - [Joel Lefkowitz][joellefkowitz]
 
-### Acknowledgments
+[![Buy Me A Coffee][coffee_button]][coffee]
 
-None yet!
+## Remarks
 
-<!--- Table links --->
+Lots of love to the open source community!
 
-[license]: https://img.shields.io/github/license/joellefkowitz/snake
-[release]: https://img.shields.io/github/v/tag/joellefkowitz/snake
-[issues]: https://img.shields.io/github/issues/joellefkowitz/snake "Issues"
-[issues_link]: https://github.com/JoelLefkowitz/snake/issues
-[pulls]: https://img.shields.io/github/issues-pr/joellefkowitz/snake "Pull requests"
-[pulls_link]: https://github.com/JoelLefkowitz/snake/pulls
+![Be kind][be_kind]
 
-[example_gif]: https://github.com/JoelLefkowitz/snake/raw/master/preview.gif "Example usage"
+<!-- Github links -->
+
+[pulls]: https://github.com/JoelLefkowitz/snake/pulls
+[issues]: https://github.com/JoelLefkowitz/snake/issues
+[preview]: https://github.com/JoelLefkowitz/snake/raw/master/preview.gif
+
+<!-- External links -->
+
+[readthedocs]: https://joellefkowitz-snake.readthedocs.io/en/latest/
+[semver]: http://semver.org/
+[coffee]: https://www.buymeacoffee.com/joellefkowitz
+[coffee_button]: https://cdn.buymeacoffee.com/buttons/default-blue.png
+[be_kind]: https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif
+
+<!-- Acknowledgments -->
+
+[joellefkowitz]: https://github.com/JoelLefkowitz
+
+<!-- Project shields -->
+
+[release_shield]: https://img.shields.io/github/v/tag/joellefkowitz/snake
+[license_shield]: https://img.shields.io/github/license/joellefkowitz/snake
+[dependents_shield]: https://img.shields.io/librariesio/dependent-repos/pypi/snake
+
+<!-- Health shields -->
+
+[travis_shield]: https://img.shields.io/travis/joellefkowitz/snake
+[codacy_shield]: https://img.shields.io/codacy/coverage/snake
+[coverage_shield]: https://img.shields.io/codacy/grade/snake
+[readthedocs_shield]: https://img.shields.io/readthedocs/joellefkowitz-snake
+
+<!-- Repository shields -->
+
+[issues_shield]: https://img.shields.io/github/issues/joellefkowitz/snake
+[pulls_shield]: https://img.shields.io/github/issues-pr/joellefkowitz/snake
+
+<!-- Activity shields -->
+
+[contributors_shield]: https://img.shields.io/github/contributors/joellefkowitz/snake
+[monthly_commits_shield]: https://img.shields.io/github/commit-activity/m/joellefkowitz/snake
+[last_commit_shield]: https://img.shields.io/github/last-commit/joellefkowitz/snake
