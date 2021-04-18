@@ -1,0 +1,43 @@
+output_dir: .
+
+clear_top_level: true
+logical_grouping: true
+
+collections:
+  - common
+  - cpp
+
+loader_paths:
+  - docs
+
+render_context:
+  project:
+    project_name: snake
+    version: 0.1.0
+
+    verbose_name: Snake
+    description: An SDL2 implementation of the classic game Snake.
+
+    repository: https://github.com/JoelLefkowitz/snake
+    codacy_id: 268409dd0e01433cb5e268b4477517a6
+
+    inserts:
+      - usage.md
+
+  author:
+    author: Joel Lefkowitz
+    author_email: joellefkowitz@hotmail.com
+    author_github_handle: joellefkowitz
+
+  portfolio:
+    is_portfolio: true
+    status_level: 1
+
+    languages:
+      - C++
+
+    frameworks:
+      - SDL2
+
+    paradigms:
+      - Event driven programming
