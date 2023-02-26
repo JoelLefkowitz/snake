@@ -1,0 +1,13 @@
+{
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/package-lock.json": true,
+    "**/venv": true,
+    "**/bower_components": true,
+    "**/output": true,
+    "**/yarn.lock": true
+  }
+}

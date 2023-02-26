@@ -4,88 +4,60 @@ An SDL2 implementation of the classic game Snake.
 
 ## Status
 
-| Source     | Shields                                                                                                            |
-| ---------- | ------------------------------------------------------------------------------------------------------------------ |
-| Project    | ![release][release_shield] ![license][license_shield] ![dependents][dependents_shield]                             |
-| Health     | ![travis][travis_shield] ![codacy][codacy_shield] ![coverage][coverage_shield] ![readthedocs][readthedocs_shield]  |
-| Repository | ![issues][issues_shield] ![pulls][pulls_shield]                                                                    |
-| Activity   | ![contributors][contributors_shield] ![monthly_commits][monthly_commits_shield] ![last_commit][last_commit_shield] |
+| Source     | Shields                                                       |
+| ---------- | ------------------------------------------------------------- |
+| Project    | ![latest_release] ![license] ![line_count] ![language_count]  |
+| Health     | ![documentation] ![review_action] ![codacy_quality]           |
+| Repository | ![open_issues] ![closed_issues] ![open_pulls] ![closed_pulls] |
+| Activity   | ![contributors] ![monthly_commits] ![last_commit]             |
 
-## Preview
+![example](./docs/example.gif)
 
-![Preview][preview]
+## Usage
 
-## Installation
-
-```bash
-git clone https://github.com/JoelLefkowitz/snake
-```
-
-To build from source:
+To build the app:
 
 ```bash
-make
+scons
 ```
 
 ## Tests
 
-To run unit tests:
+To run tests:
 
 ```bash
-grunt tests:unit
-```
-
-To generate a coverage report:
-
-```bash
-grunt tests:coverage
+scons test
 ```
 
 ## Documentation
 
-This repository's documentation is hosted on [readthedocs][readthedocs].
+This repository's documentation is hosted on [Github Pages](https://joellefkowitz.github.io/snake).
 
-To generate the sphinx configuration:
-
-```bash
-grunt docs:generate
-```
-
-Then build the documentation:
-
-```bash
-grunt docs:build
-```
-
-## Tooling
+## Linters
 
 To run linters:
 
 ```bash
-grunt lint
+nps lint
 ```
+
+## Formatters
 
 To run formatters:
 
 ```bash
-grunt format
+nps format
 ```
 
-Before commiting new code:
+## Continuous integration
 
-```bash
-grunt precommit
-```
-
-This will run linters, formaters, generate a test coverage report and the sphinx configuration.
+This repository uses GitHub Actions to lint and test each commit. Each commit should be formatted and its corresponding documentation should be updated.
 
 ## Versioning
 
-This repository adheres to semantic versioning standards.
-For more inforamtion on semantic versioning visit [SemVer][semver].
+This repository adheres to semantic versioning standards. For more information on semantic versioning visit [semver](https://semver.org).
 
-Bump2version is used to version and tag changes.
-For example:
+Bump2version is used to version and tag changes. For example:
 
 ```bash
 bump2version patch
@@ -93,62 +65,37 @@ bump2version patch
 
 ## Changelog
 
-Please read this repository's [CHANGELOG](CHANGELOG.md) for details on changes that have been made.
+Please read this repository's [changelog](CHANGELOG.md) for details on changes that have been made.
 
 ## Contributing
 
-Please read this repository's guidelines on [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+Please read this repository's guidelines on [contributing](CONTRIBUTING.md) for details on the process for submitting pull requests. Moreover, our [code of conduct](CODE_OF_CONDUCT.md) declares our collaboration standards.
 
 ## Contributors
 
-- **Joel Lefkowitz** - _Initial work_ - [Joel Lefkowitz][joellefkowitz]
-
-[![Buy Me A Coffee][coffee_button]][coffee]
+- [Joel Lefkowitz](https://github.com/joellefkowitz) - Initial work
 
 ## Remarks
 
 Lots of love to the open source community!
 
-![Be kind][be_kind]
+<p align='center'>
+    <img width=200 height=200 src='https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif' alt='Be kind to your mind' />
+    <img width=200 height=200 src='https://media.giphy.com/media/KEAAbQ5clGWJwuJuZB/giphy.gif' alt='Love each other' />
+    <img width=200 height=200 src='https://media.giphy.com/media/WRWykrFkxJA6JJuTvc/giphy.gif' alt="It's ok to have a bad day" />
+</p>
 
-<!-- Github links -->
-
-[pulls]: https://github.com/JoelLefkowitz/snake/pulls
-[issues]: https://github.com/JoelLefkowitz/snake/issues
-[preview]: https://github.com/JoelLefkowitz/snake/raw/master/preview.gif
-
-<!-- External links -->
-
-[readthedocs]: https://joellefkowitz-snake.readthedocs.io/en/latest/
-[semver]: http://semver.org/
-[coffee]: https://www.buymeacoffee.com/joellefkowitz
-[coffee_button]: https://cdn.buymeacoffee.com/buttons/default-blue.png
-[be_kind]: https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif
-
-<!-- Acknowledgments -->
-
-[joellefkowitz]: https://github.com/JoelLefkowitz
-
-<!-- Project shields -->
-
-[release_shield]: https://img.shields.io/github/v/tag/joellefkowitz/snake
-[license_shield]: https://img.shields.io/github/license/joellefkowitz/snake
-[dependents_shield]: https://img.shields.io/librariesio/dependent-repos/pypi/snake
-
-<!-- Health shields -->
-
-[travis_shield]: https://img.shields.io/travis/joellefkowitz/snake
-[codacy_shield]: https://img.shields.io/codacy/coverage/snake
-[coverage_shield]: https://img.shields.io/codacy/grade/snake
-[readthedocs_shield]: https://img.shields.io/readthedocs/joellefkowitz-snake
-
-<!-- Repository shields -->
-
-[issues_shield]: https://img.shields.io/github/issues/joellefkowitz/snake
-[pulls_shield]: https://img.shields.io/github/issues-pr/joellefkowitz/snake
-
-<!-- Activity shields -->
-
-[contributors_shield]: https://img.shields.io/github/contributors/joellefkowitz/snake
-[monthly_commits_shield]: https://img.shields.io/github/commit-activity/m/joellefkowitz/snake
-[last_commit_shield]: https://img.shields.io/github/last-commit/joellefkowitz/snake
+[latest_release]: https://img.shields.io/github/v/tag/joellefkowitz/purescript-array-search "Latest release"
+[license]: https://img.shields.io/github/license/joellefkowitz/purescript-array-search "License"
+[line_count]: https://img.shields.io/tokei/lines/github/joellefkowitz/purescript-array-search "Line count"
+[language_count]: https://img.shields.io/github/languages/count/joellefkowitz/purescript-array-search "Language count"
+[documentation]: https://pursuit.purescript.org/packages/purescript-array-search/badge "Documentation"
+[review_action]: https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/purescript-array-search/review.yml "Review action"
+[codacy_quality]: https://img.shields.io/codacy/grade/268409dd0e01433cb5e268b4477517a6 "Codacy quality"
+[open_issues]: https://img.shields.io/github/issues/joellefkowitz/purescript-array-search "Open issues"
+[closed_issues]: https://img.shields.io/github/issues-closed/joellefkowitz/purescript-array-search "Closed issues"
+[open_pulls]: https://img.shields.io/github/issues-pr/joellefkowitz/purescript-array-search "Open pull requests"
+[closed_pulls]: https://img.shields.io/github/issues-pr-closed/joellefkowitz/purescript-array-search "Closed pull requests"
+[contributors]: https://img.shields.io/github/contributors/joellefkowitz/purescript-array-search "Contributors"
+[monthly_commits]: https://img.shields.io/github/commit-activity/m/joellefkowitz/purescript-array-search "Monthly commits"
+[last_commit]: https://img.shields.io/github/last-commit/joellefkowitz/purescript-array-search "Last commit"

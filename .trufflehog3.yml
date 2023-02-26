@@ -1,0 +1,19 @@
+severity: low
+exclude:
+  - message: Codacy project public id
+    pattern: 268409dd0e01433cb5e268b4477517a6
+
+  - message: Giphy links
+    pattern: https://media.giphy.com/media/
+
+  - message: Docs output
+    paths:
+      - docs
+
+  - message: Dependencies
+    paths:
+      - node_modules
+      - package-lock.json
+      - venv
+      - yarn-error.log
+      - yarn.lock

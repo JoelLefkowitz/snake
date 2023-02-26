@@ -1,38 +1,24 @@
-# IDEs
-
-.vscode/
-# Builds
-snake
-
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+.DS_Store
+.env*
+.gitignore
+.psc-ide-port
+.terraform.lock.hcl
+.terraform/
+*.coverage
+*.spago
+*.sql
+*.svg
+*.tar.gz
+*.tgz
+*.types
+*.zip
+bower_components/
+build/
+coverage/
+dist/
+generated-docs/
+node_modules/
+output/
+venv/
+yarn-error.log
+yarn.lock

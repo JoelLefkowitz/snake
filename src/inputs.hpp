@@ -4,10 +4,10 @@
 #include <SDL2/SDL.h>
 
 struct KeyEvents {
-    bool up;
-    bool right;
-    bool down;
-    bool left;
+  bool up;
+  bool right;
+  bool down;
+  bool left;
 };
 
 KeyEvents handle_keys(SDL_Event event);

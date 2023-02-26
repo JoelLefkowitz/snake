@@ -1,6 +1,28 @@
 {
+  "scripts": {
+    "prepare": "husky install"
+  },
   "devDependencies": {
-    "grunt": "^1.3.0",
-    "grunt-cli": "^1.3.0"
+    "cspell": "^6.26.3",
+    "husky": "^8.0.3",
+    "nps": "^5.10.0",
+    "nps-utils": "^1.7.0",
+    "prettier": "^2.6.2",
+    "ts-node": "10.9.1",
+    "tslib": "^2.3.0",
+    "typescript": "^4.8.4"
+  },
+  "metadata": {
+    "documentation": "",
+    "packages": null,
+    "languages": [
+      ""
+    ],
+    "frameworks": [],
+    "paradigms": [
+      "Event driven"
+    ],
+    "lifecycle": "Alpha",
+    "publisher": "Pursuit"
   }
 }
