@@ -55,4 +55,8 @@ runs:
 
     - name: Install python dependencies
       shell: bash
-      run: pip install trufflehog3
+      run: pip install cppclean trufflehog3
+
+    - name: Install apt dependencies
+      shell: bash
+      run: sudo apt install -y cppcheck

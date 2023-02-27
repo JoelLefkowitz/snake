@@ -41,6 +41,7 @@
     "bumpversion",
     "codacy",
     "cppcheck",
+    "cppclean",
     "cppflags",
     "cpptools",
     "cxxcomstr",
