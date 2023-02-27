@@ -14,7 +14,10 @@ exclude:
       - files.html
       - function*.html
       - global*.html
+      - index.html
+      - main_8md.html
       - md_docs_main.html
+      - namespace*.html
       - pages.html
       - search/*.html
       - search/*.js

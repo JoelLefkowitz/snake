@@ -51,11 +51,11 @@ runs:
       shell: bash
       run: |
         yarn install --frozen-lockfile
-        yarn global add bower nps pulp ts-node
+        yarn global add nps ts-node
 
     - name: Install python dependencies
       shell: bash
-      run: pip install cppclean trufflehog3
+      run: pip install cppclean emoji scons psutil trufflehog3
 
     - name: Install apt dependencies
       shell: bash
