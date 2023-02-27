@@ -33,6 +33,12 @@ scons test
 
 This repository's documentation is hosted on [Github Pages](https://joellefkowitz.github.io/snake).
 
+To generate the documentation locally:
+
+```bash
+doxygen
+```
+
 ## Linters
 
 To run linters:

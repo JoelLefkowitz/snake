@@ -17,9 +17,6 @@ jobs:
       - name: Install dependencies
         uses: ./.github/actions/install
 
-      - name: Install apt dependencies
-        run: sudo apt install -y doxygen=1.9.1-2ubuntu2
-
       - name: Build docs
         run: doxygen
 

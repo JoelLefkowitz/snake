@@ -8,7 +8,14 @@ exclude:
 
   - message: Docs output
     paths:
+      - "*8cpp*"
+      - "*8hpp*"
       - docs
+      - files.html
+      - function*.html
+      - global*.html
+      - search/*.html
+      - search/*.js
 
   - message: Dependencies
     paths:

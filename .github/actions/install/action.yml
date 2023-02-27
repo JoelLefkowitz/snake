@@ -59,4 +59,4 @@ runs:
 
     - name: Install apt dependencies
       shell: bash
-      run: sudo apt install -y cppcheck
+      run: sudo apt install -y cppcheck doxygen=1.9.1-2ubuntu2
