@@ -6,6 +6,7 @@
     "*.coverage",
     "*.env",
     "*.sql",
+    "*.dblite",
     "*.svg",
     "*.types",
     "**/.git/**",
@@ -46,15 +47,18 @@
     "cpptools",
     "cxxcomstr",
     "cxxflags",
+    "dblite",
     "doxyfile",
     "emojize",
     "giphy",
+    "highdpi",
     "joel",
     "joellefkowitz",
     "lefkowitz",
     "linkcomstr",
     "maxdepth",
     "nosecret",
+    "presentvsync",
     "psutil",
     "scons",
     "snoc",
@@ -63,6 +67,7 @@
     "typecheck",
     "uncaptured",
     "venv",
-    "viewcode"
+    "viewcode",
+    "windowpos"
   ]
 }

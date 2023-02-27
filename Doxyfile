@@ -1,7 +1,7 @@
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = Paths
+PROJECT_NAME           = Snake
 PROJECT_NUMBER         = 0.1.0
-PROJECT_BRIEF          = OS specific path manipulation including retrieving the executable's path.
+PROJECT_BRIEF          = An SDL2 implementation of the classic game Snake.
 PROJECT_LOGO           =
 INPUT_ENCODING         = UTF-8
 INPUT                  = src docs/main.md

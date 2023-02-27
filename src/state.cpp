@@ -1,98 +1,100 @@
 #include "state.hpp"
-#include "draw.hpp"
+#include "graphics.hpp"
+
+GameState::GameState()
+    : bean(random_position())
+    , head(random_position())
+    , tail({})
+    , heading(RIGHT)
+    , over(false)
+    , score(0) {
+}
 
 bool operator==(const Position &lhs, const Position &rhs) {
-  return lhs.x == rhs.x && lhs.y == rhs.y;
+    return lhs.x == rhs.x && lhs.y == rhs.y;
 }
 
-int neg_modulo(int a, int b) { return (b + (a % b)) % b; }
+int neg_modulo(int a, int b) {
+    return (b + (a % b)) % b;
+}
 
 Position random_position() {
-  Position pos;
-  pos.x = rand() % n_horizontal;
-  pos.y = rand() % n_vertical;
-  return pos;
+    Position pos;
+    pos.x = rand() % size;
+    pos.y = rand() % size;
+    return pos;
 }
 
-GameState init_state() {
-  GameState game_state;
-  game_state.head = random_position();
-  game_state.bean = random_position();
-  game_state.heading = Direction((rand() % 4));
-  game_state.score = 0;
-  game_state.game_over = false;
-  return game_state;
+void GameState::update(const KeyEvents &keys) {
+    update_heading(keys);
+
+    Position prev_head = head;
+    update_head();
+    update_tail(prev_head);
+
+    check_game_over();
+
+    update_bean();
 }
 
-void update_state(GameState *game_state, KeyEvents keys) {
-  update_heading(game_state, keys);
-  Position prev_head = game_state->head;
-  update_head(game_state);
-  update_tail(game_state, prev_head);
-  update_bean(game_state);
-  check_game_over(game_state);
-}
-
-void update_heading(GameState *game_state, KeyEvents keys) {
-  if (keys.up && game_state->heading != DOWN) {
-    game_state->heading = UP;
-  }
-
-  else if (keys.right && game_state->heading != LEFT) {
-    game_state->heading = RIGHT;
-  }
-
-  else if (keys.down && game_state->heading != UP) {
-    game_state->heading = DOWN;
-  }
-
-  else if (keys.left && game_state->heading != RIGHT) {
-    game_state->heading = LEFT;
-  }
-}
-
-void update_head(GameState *game_state) {
-  switch (game_state->heading) {
-  case UP:
-    game_state->head.y = neg_modulo((game_state->head.y - 1), n_vertical);
-    break;
-
-  case RIGHT:
-    game_state->head.x = neg_modulo((game_state->head.x + 1), n_horizontal);
-    break;
-
-  case DOWN:
-    game_state->head.y = neg_modulo((game_state->head.y + 1), n_vertical);
-    break;
-
-  case LEFT:
-    game_state->head.x = neg_modulo((game_state->head.x - 1), n_horizontal);
-    break;
-  };
-}
-
-void update_tail(GameState *game_state, Position prev_head) {
-  if (game_state->head == game_state->bean) {
-    (game_state->tail).push_back(prev_head);
-    game_state->score++;
-  }
-
-  else if (game_state->tail.size() > 0) {
-    game_state->tail.erase(game_state->tail.begin());
-    game_state->tail.push_back(prev_head);
-  }
-}
-
-void update_bean(GameState *game_state) {
-  if (game_state->head == game_state->bean) {
-    game_state->bean = random_position();
-  }
-}
-
-void check_game_over(GameState *game_state) {
-  for (Position tail_piece : game_state->tail) {
-    if (game_state->head == tail_piece) {
-      game_state->game_over = true;
+void GameState::update_heading(const KeyEvents &keys) {
+    if (keys.up && heading != DOWN) {
+        heading = UP;
     }
-  }
+
+    else if (keys.right && heading != LEFT) {
+        heading = RIGHT;
+    }
+
+    else if (keys.down && heading != UP) {
+        heading = DOWN;
+    }
+
+    else if (keys.left && heading != RIGHT) {
+        heading = LEFT;
+    }
+}
+
+void GameState::update_head() {
+    switch (heading) {
+    case UP:
+        head.y = neg_modulo((head.y - 1), size);
+        break;
+
+    case RIGHT:
+        head.x = neg_modulo((head.x + 1), size);
+        break;
+
+    case DOWN:
+        head.y = neg_modulo((head.y + 1), size);
+        break;
+
+    case LEFT:
+        head.x = neg_modulo((head.x - 1), size);
+        break;
+    };
+}
+
+void GameState::update_tail(const Position &prev_head) {
+    if (head == bean) {
+        (tail).push_back(prev_head);
+        score++;
+    }
+
+    else if (tail.size() > 0) {
+        tail.erase(tail.begin());
+        tail.push_back(prev_head);
+    }
+}
+
+void GameState::update_bean() {
+    if (head == bean) {
+        bean = random_position();
+    }
+}
+
+void GameState::check_game_over() {
+    over = std::any_of(tail.begin(), tail.end(), [&](const Position &piece) {
+        return head == piece;
+    });
 }

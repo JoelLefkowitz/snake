@@ -1,52 +1,60 @@
 #include "main.hpp"
-#include "draw.hpp"
+#include "graphics.hpp"
 #include "inputs.hpp"
-#include "lifecycle.hpp"
 #include "state.hpp"
+#include <string>
+
+Uint32 STEP = SDL_RegisterEvents(1);
 
 int main(int argc, char *args[]) {
-  SDL_Window *window = nullptr;
-  SDL_Surface *surface = nullptr;
-  SDL_Renderer *renderer = nullptr;
+    srand(static_cast<unsigned int>(time(NULL)));
 
-  bool quit = !(init_sdl(&window, &renderer) && init_draw(&surface));
-
-  SDL_AddTimer(step_interval, push_step_event, NULL);
-  srand(static_cast<unsigned int>(time(NULL)));
-
-  SDL_Event event;
-  KeyEvents keys;
-  GameState game_state = init_state();
-
-  while (!quit) {
-    while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_QUIT) {
-        quit = true;
-      }
-
-      else if (event.type == SDL_KEYDOWN) {
-        keys = handle_keys(event);
-      }
-
-      else if (event.type == STEP) {
-        update_state(&game_state, keys);
-        paint_texture(surface, renderer, game_state);
-
-        if (!game_state.game_over) {
-          SDL_AddTimer(step_interval, push_step_event, NULL);
-        }
-      }
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        SDL_LogError(
+            SDL_LOG_CATEGORY_APPLICATION,
+            "SDL could not initialize. %s",
+            SDL_GetError()
+        );
     }
-  }
 
-  close_draw(surface);
-  close_sdl(window, renderer);
-  return 0;
+    Graphics  graphics;
+    GameState game;
+    KeyEvents inputs;
+
+    SDL_Event event;
+    SDL_AddTimer(framerate, step, NULL);
+
+    bool quit = false;
+
+    while (!quit) {
+        if (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                quit = true;
+            }
+
+            else if (event.type == SDL_KEYDOWN) {
+                inputs = keys(event);
+            }
+
+            else if (event.type == STEP) {
+                game.update(inputs);
+                graphics.update(game);
+
+                if (!game.over) {
+                    SDL_AddTimer(framerate, step, NULL);
+                }
+            }
+        }
+    }
+
+    SDL_Quit();
+
+    return std::string(SDL_GetError()).empty() ? 0 : 1;
 }
 
-Uint32 push_step_event(Uint32 interval, void *param) {
-  SDL_Event event;
-  event.type = STEP;
-  SDL_PushEvent(&event);
-  return 0;
+Uint32 step(Uint32 interval, void *param) {
+    SDL_Event event;
+    event.type = STEP;
+    SDL_PushEvent(&event);
+    return 0;
 }

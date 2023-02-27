@@ -1,11 +1,13 @@
 #include "inputs.hpp"
 
-KeyEvents handle_keys(SDL_Event event) {
-  KeyEvents keys;
-  const Uint8 *state = SDL_GetKeyboardState(NULL);
-  keys.up = state[SDL_SCANCODE_UP];
-  keys.right = state[SDL_SCANCODE_RIGHT];
-  keys.down = state[SDL_SCANCODE_DOWN];
-  keys.left = state[SDL_SCANCODE_LEFT];
-  return keys;
+KeyEvents keys(const SDL_Event &event) {
+    const Uint8 *state = SDL_GetKeyboardState(NULL);
+
+    KeyEvents events;
+    events.up    = state[SDL_SCANCODE_UP];
+    events.right = state[SDL_SCANCODE_RIGHT];
+    events.down  = state[SDL_SCANCODE_DOWN];
+    events.left  = state[SDL_SCANCODE_LEFT];
+
+    return events;
 }

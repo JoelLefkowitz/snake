@@ -6,27 +6,36 @@
 #include <vector>
 
 struct Position {
-  int x;
-  int y;
+    int x;
+    int y;
 };
 
 enum Direction { UP, RIGHT, DOWN, LEFT };
 
-struct GameState {
-  Position head;
-  Position bean;
-  std::vector<Position> tail;
-  Direction heading;
-  int score;
-  bool game_over;
-};
+Position random_position();
 
-GameState init_state();
-void update_state(GameState *game_state, KeyEvents keys);
-void update_heading(GameState *game_state, KeyEvents keys);
-void update_head(GameState *game_state);
-void update_bean(GameState *game_state);
-void update_tail(GameState *game_state, Position prev_head);
-void check_game_over(GameState *game_state);
+class GameState {
+  private:
+    void update_heading(const KeyEvents &keys);
+
+    void update_head();
+    void update_bean();
+    void update_tail(const Position &prev_head);
+
+    void check_game_over();
+
+  public:
+    Position              bean;
+    Position              head;
+    std::vector<Position> tail;
+
+    Direction heading;
+
+    bool over;
+    int  score;
+
+    GameState();
+    void update(const KeyEvents &keys);
+};
 
 #endif

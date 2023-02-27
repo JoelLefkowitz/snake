@@ -5,6 +5,8 @@
 .terraform.lock.hcl
 .terraform/
 *.coverage
+*.dblite
+*.o
 *.spago
 *.sql
 *.svg
