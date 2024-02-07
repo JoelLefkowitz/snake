@@ -49,4 +49,4 @@ runs:
         make
         sudo make install
         cd ../..
-        rm -rf googletest/build
+        rm -rf googletest
