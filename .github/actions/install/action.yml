@@ -37,7 +37,7 @@ runs:
 
     - name: Install apt dependencies
       shell: bash
-      run: sudo apt install -y doxygen cppcheck clang-format doxygen SDL2
+      run: sudo apt install -y doxygen cppcheck clang-format doxygen libsdl2-dev
 
     - name: Install gtest
       shell: bash

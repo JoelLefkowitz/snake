@@ -38,6 +38,7 @@
     "iwyu",
     "lefkowitz",
     "libpath",
+    "libsdl",
     "linkcomstr",
     "mainpage",
     "presentvsync",
