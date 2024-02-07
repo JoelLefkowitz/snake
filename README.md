@@ -2,7 +2,7 @@
 
 An SDL2 implementation of the classic game Snake.
 
-![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/reviewed/snake.yml)
+![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/snake/review.yml)
 ![Quality](https://img.shields.io/codacy/grade/268409dd0e01433cb5e268b4477517a6)
 
 ## Example
@@ -11,7 +11,7 @@ An SDL2 implementation of the classic game Snake.
 
 ## Documentation
 
-Documentation and more detailed examples are hosted on [Github Pages](https://joellefkowitz.github.io/reviewed).
+Documentation and more detailed examples are hosted on [Github Pages](https://joellefkowitz.github.io/snake).
 
 ## Tooling
 
