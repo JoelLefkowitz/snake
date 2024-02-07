@@ -1,4 +1,12 @@
 {
+  "name": "snake",
+  "description": "An SDL2 implementation of the classic game Snake.",
+  "version": "0.3.1",
+  "private": false,
+  "license": "MIT",
+  "author": "Joel Lefkowitz",
+  "repository": "https://github.com/joellefkowitz/snake",
+  "homepage": "https://joellefkowitz.github.io/snake",
   "metadata": {
     "publisher": null,
     "languages": [

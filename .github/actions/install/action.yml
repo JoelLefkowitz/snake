@@ -6,6 +6,10 @@ inputs:
     description: Node version
     default: "18"
 
+  python-version:
+    description: Python version
+    default: "3.10"
+
 runs:
   using: composite
   steps:
@@ -31,13 +35,22 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
 
+    - name: Set the python version
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
     - name: Install node dependencies
       shell: bash
       run: yarn install --frozen-lockfile
 
+    - name: Install python dependencies
+      shell: bash
+      run: pip install -r requirements.txt
+
     - name: Install apt dependencies
       shell: bash
-      run: apt install -y doxygen cppcheck clang-format doxygen SDL2
+      run: sudo apt install -y doxygen cppcheck clang-format doxygen libsdl2-dev
 
     - name: Install gtest
       shell: bash
@@ -48,3 +61,5 @@ runs:
         cmake ..
         make
         sudo make install
+        cd ../..
+        rm -rf googletest

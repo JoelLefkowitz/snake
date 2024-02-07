@@ -14,14 +14,13 @@ jobs:
 
       - name: Run linters
         run: npm run lint
+        env:
+          CPPPATH: /usr/include
 
       - name: Run tests
         run: |
           scons test
           ./dist/tests
-
-      - name: Publish test coverage
-        uses: codacy/codacy-coverage-reporter-action@v1
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: ./coverage/lcov.info
+        env:
+          CPPPATH: /usr/include
+          LIBPATH: /usr/lib
