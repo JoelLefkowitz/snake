@@ -1,9 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <SDL2/SDL.h>
+#include "SDL2/SDL_stdinc.h"
 
-Uint32 framerate = 100;
+const Uint32 FRAMERATE = 100;
+
 Uint32 step(Uint32 interval, void *param);
 
 #endif

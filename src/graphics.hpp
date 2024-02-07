@@ -1,26 +1,30 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-#include "state.hpp"
-#include <SDL2/SDL.h>
+#include "SDL2/SDL_render.h"
+#include "SDL2/SDL_stdinc.h"
+#include "SDL2/SDL_surface.h"
+#include "SDL2/SDL_video.h"
 #include <string>
+#include <vector>
 
-const int size = 10;
-const int side = 30;
+const int SIZE = 10;
+const int SIDE = 30;
 
-const int height = 300;
-const int width  = 300;
+const int HEIGHT = 300;
+const int WIDTH  = 300;
 
-const Uint32 window_flags = SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE;
-
-const Uint32 renderer_flags = SDL_RENDERER_PRESENTVSYNC |
-    SDL_RENDERER_ACCELERATED;
+const Uint32 WINDOW_FLAGS   = SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE;
+const Uint32 RENDERER_FLAGS = SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED;
 
 struct RGB {
     int r;
     int g;
     int b;
 };
+
+class Position;
+class GameState;
 
 class Graphics {
   private:

@@ -1,7 +1,7 @@
 #ifndef INPUTS_H
 #define INPUTS_H
 
-#include <SDL2/SDL.h>
+#include "SDL2/SDL_events.h"
 
 struct KeyEvents {
     bool up;

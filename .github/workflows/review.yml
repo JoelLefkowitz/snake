@@ -4,8 +4,7 @@ on: [push, pull_request]
 
 jobs:
   review:
-    runs-on: ubuntu-22.04
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v3
@@ -14,4 +13,15 @@ jobs:
         uses: ./.github/actions/install
 
       - name: Run linters
-        run: nps lint
+        run: npm run lint
+
+      - name: Run tests
+        run: |
+          scons test
+          ./dist/tests
+
+      - name: Publish test coverage
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ./coverage/lcov.info

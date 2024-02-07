@@ -1,20 +1,6 @@
 {
-  "scripts": {
-    "prepare": "husky install"
-  },
-  "devDependencies": {
-    "cspell": "^6.26.3",
-    "husky": "^8.0.3",
-    "nps": "^5.10.0",
-    "nps-utils": "^1.7.0",
-    "prettier": "^2.6.2",
-    "ts-node": "10.9.1",
-    "tslib": "^2.3.0",
-    "typescript": "^4.8.4"
-  },
   "metadata": {
-    "documentation": "https://JoelLefkowitz.github.io/snake",
-    "packages": null,
+    "publisher": null,
     "languages": [
       "C++"
     ],
@@ -24,7 +10,17 @@
     "paradigms": [
       "Event driven"
     ],
-    "lifecycle": "Production/Stable",
-    "publisher": null
+    "lifecycle": "Stable"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "cspell . --dot && cppclean . --include-path $CPPPATH && cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck && scons --typecheck",
+    "format": "prettier . --write && clang-format -i **/*.*pp",
+    "docs": "doxygen"
+  },
+  "devDependencies": {
+    "cspell": "^8.0.0",
+    "husky": "^9.0.0",
+    "prettier": "^3.0.0"
   }
 }

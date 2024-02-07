@@ -1,28 +1,17 @@
 #include "state.hpp"
 #include "graphics.hpp"
+#include "inputs.hpp"
+#include "numbers.hpp"
+#include "position.hpp"
+#include <algorithm>
 
 GameState::GameState()
-    : bean(random_position())
-    , head(random_position())
+    : bean(Position::random_position())
+    , head(Position::random_position())
     , tail({})
     , heading(RIGHT)
     , over(false)
     , score(0) {
-}
-
-bool operator==(const Position &lhs, const Position &rhs) {
-    return lhs.x == rhs.x && lhs.y == rhs.y;
-}
-
-int neg_modulo(int a, int b) {
-    return (b + (a % b)) % b;
-}
-
-Position random_position() {
-    Position pos;
-    pos.x = rand() % size;
-    pos.y = rand() % size;
-    return pos;
 }
 
 void GameState::update(const KeyEvents &keys) {
@@ -58,19 +47,19 @@ void GameState::update_heading(const KeyEvents &keys) {
 void GameState::update_head() {
     switch (heading) {
     case UP:
-        head.y = neg_modulo((head.y - 1), size);
+        head.y = neg_modulo((head.y - 1), SIZE);
         break;
 
     case RIGHT:
-        head.x = neg_modulo((head.x + 1), size);
+        head.x = neg_modulo((head.x + 1), SIZE);
         break;
 
     case DOWN:
-        head.y = neg_modulo((head.y + 1), size);
+        head.y = neg_modulo((head.y + 1), SIZE);
         break;
 
     case LEFT:
-        head.x = neg_modulo((head.x - 1), size);
+        head.x = neg_modulo((head.x - 1), SIZE);
         break;
     };
 }
@@ -89,12 +78,10 @@ void GameState::update_tail(const Position &prev_head) {
 
 void GameState::update_bean() {
     if (head == bean) {
-        bean = random_position();
+        bean = Position::random_position();
     }
 }
 
 void GameState::check_game_over() {
-    over = std::any_of(tail.begin(), tail.end(), [&](const Position &piece) {
-        return head == piece;
-    });
+    over = std::any_of(tail.begin(), tail.end(), [&](const Position &piece) { return head == piece; });
 }

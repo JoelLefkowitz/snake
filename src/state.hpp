@@ -1,18 +1,12 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include "inputs.hpp"
-#include <SDL2/SDL.h>
+#include "position.hpp"
 #include <vector>
 
-struct Position {
-    int x;
-    int y;
-};
+struct KeyEvents;
 
 enum Direction { UP, RIGHT, DOWN, LEFT };
-
-Position random_position();
 
 class GameState {
   private:

@@ -1,0 +1,5 @@
+cppclean@git+https://github.com/myint/cppclean.git@811ed459c9f650ad6135e9c73455136af8885716
+emoji==1.7.0
+psutil==5.9.1
+SCons==4.3.0
+walkmate==1.2.2

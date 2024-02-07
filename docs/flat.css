@@ -70,7 +70,10 @@ dl {
   color: var(--bgfont);
   background-color: var(--bgcolor);
   line-height: 150%;
-  font: 14px/22px, Roboto, Arial;
+  font:
+    14px/22px,
+    Roboto,
+    Arial;
 }
 
 div.contents {
