@@ -1,7 +1,7 @@
 {
   "name": "snake",
   "description": "An SDL2 implementation of the classic game Snake.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "license": "MIT",
   "author": "Joel Lefkowitz",
