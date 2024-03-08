@@ -1,7 +1,7 @@
-export CPPPATH /opt/homebrew/include
-export LIBPATH /opt/homebrew/lib
+export CPPPATH=/opt/homebrew/include
+export LIBPATH=/opt/homebrew/lib
 
-cspell . --dot
+npx cspell . --dot
 cppclean . --include-path $CPPPATH
 cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
 scons --typecheck
