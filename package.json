@@ -7,6 +7,10 @@
   "author": "Joel Lefkowitz",
   "repository": "https://github.com/joellefkowitz/snake",
   "homepage": "https://joellefkowitz.github.io/snake",
+  "keywords": [
+    "game",
+    "arcade"
+  ],
   "metadata": {
     "publisher": null,
     "languages": [
