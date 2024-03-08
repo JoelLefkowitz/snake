@@ -1,15 +1,6 @@
 name: Install
 description: Install dependencies
 
-inputs:
-  node-version:
-    description: Node version
-    default: "18"
-
-  python-version:
-    description: Python version
-    default: "3.10"
-
 runs:
   using: composite
   steps:
@@ -33,12 +24,12 @@ runs:
     - name: Set the node version
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ inputs.node-version }}
+        node-version: "18"
 
     - name: Set the python version
       uses: actions/setup-python@v4
       with:
-        python-version: ${{ inputs.python-version }}
+        python-version: "3.10"
 
     - name: Install apt dependencies
       shell: bash
