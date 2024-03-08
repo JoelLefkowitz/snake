@@ -14,7 +14,7 @@ jobs:
 
       - name: Run linters
         run: |
-          cspell . --dot
+          npx cspell . --dot
           cppclean . --include-path $CPPPATH
           cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
           scons --typecheck
