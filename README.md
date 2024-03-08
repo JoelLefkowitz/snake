@@ -7,7 +7,7 @@ An SDL2 implementation of the classic game Snake.
 
 ## Example
 
-![example](./docs/example.gif)
+![example](docs/example.gif)
 
 ## Documentation
 
@@ -27,7 +27,7 @@ export LIBPATH=/opt/homebrew/lib
 To run tests:
 
 ```bash
-scons test
+scons tests
 ```
 
 ```bash
@@ -38,24 +38,28 @@ scons test
 
 To generate the documentation locally:
 
-```bash
-npm run docs
+```sh
+doxygen
 ```
 
 ### Linters
 
 To run linters:
 
-```bash
-npm run lint
+```sh
+cspell . --dot
+cppclean . --include-path $CPPPATH
+cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
+scons --typecheck
 ```
 
 ### Formatters
 
 To run formatters:
 
-```bash
-npm run format
+```sh
+prettier . --write
+clang-format -i **/*.*pp
 ```
 
 ## Contributing

@@ -40,17 +40,9 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
 
-    - name: Install node dependencies
-      shell: bash
-      run: yarn install --frozen-lockfile
-
-    - name: Install python dependencies
-      shell: bash
-      run: pip install -r requirements.txt
-
     - name: Install apt dependencies
       shell: bash
-      run: sudo apt install -y doxygen cppcheck clang-format doxygen libsdl2-dev
+      run: sudo apt install -y cppcheck clang-format doxygen libsdl2-dev
 
     - name: Install gtest
       shell: bash
@@ -63,3 +55,11 @@ runs:
         sudo make install
         cd ../..
         rm -rf googletest
+
+    - name: Install node dependencies
+      shell: bash
+      run: yarn install --frozen-lockfile
+
+    - name: Install python dependencies
+      shell: bash
+      run: pip install -r requirements.txt

@@ -21,10 +21,7 @@
     "lifecycle": "Stable"
   },
   "scripts": {
-    "prepare": "husky install",
-    "lint": "cspell . --dot && cppclean . --include-path $CPPPATH && cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck && scons --typecheck",
-    "format": "prettier . --write && clang-format -i **/*.*pp",
-    "docs": "doxygen"
+    "postinstall": "husky install"
   },
   "devDependencies": {
     "cspell": "^8.0.0",

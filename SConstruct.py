@@ -58,8 +58,8 @@ ignore = prefix(
 env = Environment(
     CXX="clang++",
     LIBS=libs,
-    CPPPATH=[os.getenv("CPPPATH", "/opt/homebrew/include")],
-    LIBPATH=[os.getenv("LIBPATH", "/opt/homebrew/lib")],
+    CPPPATH=[os.getenv("CPPPATH")],
+    LIBPATH=[os.getenv("LIBPATH")],
     CPPFLAGS=" ".join(warnings + ignore),
     CXXFLAGS=" ".join(flags),
     CXXCOMSTR=report("Compiling", "wrench"),
@@ -85,4 +85,4 @@ env.Program(target="./dist/build", source=sources("(?<!test)(?<!\.spec)\.cpp$"))
 env.Program(target="./dist/tests", source=sources("(?<!main)\.cpp$"))
 
 env.Alias("build", "./dist/build")
-env.Alias("test", "./dist/tests")
+env.Alias("tests", "./dist/tests")

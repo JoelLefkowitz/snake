@@ -1,1 +1,10 @@
-npm run lint
+export CPPPATH /opt/homebrew/include
+export LIBPATH /opt/homebrew/lib
+
+cspell . --dot
+cppclean . --include-path $CPPPATH
+cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
+scons --typecheck
+
+scons tests
+./dist/tests
