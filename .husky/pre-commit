@@ -1,10 +1,7 @@
-export CPPPATH=/opt/homebrew/include
-export LIBPATH=/opt/homebrew/lib
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
 npx cspell . --dot
 cppclean . --include-path $CPPPATH
 cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
 scons --typecheck
-
-scons tests
-./dist/tests

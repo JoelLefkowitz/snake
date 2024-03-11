@@ -15,14 +15,14 @@ Documentation and more detailed examples are hosted on [Github Pages](https://jo
 
 ## Tooling
 
-### Tests
-
 Set the `CPPPATH` and `LIBPATH` environment variables:
 
 ```bash
-export CPPPATH=/opt/homebrew/include
-export LIBPATH=/opt/homebrew/lib
+export CPPPATH="/usr/include"
+export LIBPATH="/usr/lib"
 ```
+
+### Tests
 
 To run tests:
 

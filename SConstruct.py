@@ -1,88 +1,81 @@
 import os
 import re
 import psutil
-from walkmate import get_child_files
-from emoji import emojize
 from SCons.Environment import Environment
 from SCons.Script import AddOption
-
-
-def report(action, emoji):
-    return emojize(f":{emoji}: {action} $TARGET")
-
-
-def prefix(segment, strings):
-    return list(map(lambda x: segment + x, strings))
-
-
-def sources(pattern):
-    return [i for i in get_child_files(".") if re.search(pattern, i)]
-
-
-flags = [
-    "-std=c++17",
-    "-fvisibility=hidden",
-]
+from walkmate import get_child_files as tree
 
 libs = [
     "gtest",
+    "pthread",
     "SDL2",
 ]
 
-warnings = prefix(
-    "-W",
-    [
-        "all",
-        "conversion",
-        "extra",
-        "missing-declarations",
-        "pedantic",
-        "shadow-uncaptured-local",
-        "shadow",
-    ],
-)
-
-ignore = prefix(
-    "-Wno-",
-    [
-        "deprecated-declarations",
-        "macro-redefined",
-        "missing-braces",
-        "unknown-warning-option",
-        "unused-parameter",
-        "vla-extension",
-        "everything",
-    ],
-)
+warnings = [
+    "-Wall",
+    "-Wconversion",
+    "-Wextra",
+    "-Wmissing-declarations",
+    "-Wpedantic",
+    "-Wshadow-uncaptured-local",
+    "-Wshadow",
+    "-Wno-deprecated-declarations",
+    "-Wno-macro-redefined",
+    "-Wno-missing-braces",
+    "-Wno-unknown-warning-option",
+    "-Wno-unused-parameter",
+    "-Wno-vla-extension",
+    "-Wno-everything",
+]
 
 env = Environment(
-    CXX="clang++",
     LIBS=libs,
-    CPPPATH=[os.getenv("CPPPATH")],
-    LIBPATH=[os.getenv("LIBPATH")],
-    CPPFLAGS=" ".join(warnings + ignore),
-    CXXFLAGS=" ".join(flags),
-    CXXCOMSTR=report("Compiling", "wrench"),
-    LINKCOMSTR=report("Linking", "link"),
+    CXXFLAGS=["-std=c++17"],
+    CPPPATH=os.getenv("CPPPATH"),
+    LIBPATH=os.getenv("LIBPATH"),
+    ENV={"PATH": os.getenv("PATH")},
+    num_jobs=psutil.cpu_count(),
 )
 
-AddOption("--iwyu", action="store_true")
-AddOption("--typecheck", action="store_true")
+AddOption(
+    "--iwyu",
+    action="store_true",
+)
 
-if GetOption("iwyu"):
-    env.Replace(CXX="/opt/homebrew/bin/include-what-you-use")
+AddOption(
+    "--typecheck",
+    action="store_true",
+)
 
 if GetOption("typecheck"):
-    env.Replace(
-        LINK=":",
-        CXXFLAGS=" ".join(flags + ["-S", "-O0"]),
-        CXXCOMSTR=report("Checking", "microscope"),
+    env["LINK"] = ":"
+    env["CXXFLAGS"].extend(["-S", "-O0"])
+
+elif GetOption("iwyu"):
+    env["CXX"] = "include-what-you-use"
+
+else:
+    env["CXX"] = "clang++"
+    env["CXXFLAGS"].extend(warnings)
+
+find = lambda pattern: [
+    source
+    for source in tree(".")
+    if re.search(
+        pattern,
+        source,
     )
+]
 
-env["num_jobs"] = psutil.cpu_count()
+env.Program(
+    target="dist/build",
+    source=find("(?<!test)(?<!\.spec)\.cpp$"),
+)
 
-env.Program(target="./dist/build", source=sources("(?<!test)(?<!\.spec)\.cpp$"))
-env.Program(target="./dist/tests", source=sources("(?<!main)\.cpp$"))
+env.Program(
+    target="dist/tests",
+    source=find("(?<!main)\.cpp$"),
+)
 
 env.Alias("build", "./dist/build")
 env.Alias("tests", "./dist/tests")

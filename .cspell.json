@@ -43,9 +43,16 @@
     "mainpage",
     "presentvsync",
     "psutil",
+    "pthread",
     "scons",
     "typecheck",
     "walkmate",
+    "wconversion",
+    "wextra",
+    "wmissing",
+    "wpedantic",
+    "wshadow",
+    "wshadow",
     "windowpos"
   ]
 }
