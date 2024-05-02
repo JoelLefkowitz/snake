@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef SNAKE_MAIN_HPP
+#define SNAKE_MAIN_HPP
 
 #include "SDL2/SDL_stdinc.h"
 

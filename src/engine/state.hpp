@@ -1,5 +1,5 @@
-#ifndef STATE_H
-#define STATE_H
+#ifndef SNAKE_ENGINE_STATE_HPP
+#define SNAKE_ENGINE_STATE_HPP
 
 #include "position.hpp"
 #include <vector>

@@ -11,8 +11,7 @@ GameState::GameState()
     , tail({})
     , heading(RIGHT)
     , over(false)
-    , score(0) {
-}
+    , score(0) {}
 
 void GameState::update(const KeyEvents &keys) {
     update_heading(keys);

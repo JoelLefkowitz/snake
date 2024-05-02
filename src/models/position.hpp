@@ -1,5 +1,5 @@
-#ifndef POSITION_H
-#define POSITION_H
+#ifndef SNAKE_MODELS_POSITION_HPP
+#define SNAKE_MODELS_POSITION_HPP
 
 class Position {
   public:

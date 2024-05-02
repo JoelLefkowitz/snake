@@ -9,17 +9,24 @@ An SDL2 implementation of the classic game Snake.
 
 ![example](docs/example.gif)
 
+## Installing
+
+You can download the [sources](https://download-directory.github.io?url=https://github.com/joellefkowitz/snake/tree/master/src).
+
 ## Documentation
 
 Documentation and more detailed examples are hosted on [Github Pages](https://joellefkowitz.github.io/snake).
 
 ## Tooling
 
-Set the `CPPPATH` and `LIBPATH` environment variables:
+### Dependencies
+
+To install dependencies:
 
 ```bash
-export CPPPATH="/usr/include"
-export LIBPATH="/usr/lib"
+yarn install
+pip install .[all]
+conan install .
 ```
 
 ### Tests
@@ -27,39 +34,31 @@ export LIBPATH="/usr/lib"
 To run tests:
 
 ```bash
-scons tests
-```
-
-```bash
-./dist/tests
+scons test
 ```
 
 ### Documentation
 
 To generate the documentation locally:
 
-```sh
-doxygen
+```bash
+scons docs
 ```
 
 ### Linters
 
 To run linters:
 
-```sh
-cspell . --dot
-cppclean . --include-path $CPPPATH
-cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
-scons --typecheck
+```bash
+scons lint
 ```
 
 ### Formatters
 
 To run formatters:
 
-```sh
-prettier . --write
-clang-format -i **/*.*pp
+```bash
+scons format
 ```
 
 ## Contributing
@@ -82,8 +81,8 @@ bump2version patch
 
 Lots of love to the open source community!
 
-<p align='center'>
+<div align='center'>
     <img width=200 height=200 src='https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif' alt='Be kind to your mind' />
     <img width=200 height=200 src='https://media.giphy.com/media/KEAAbQ5clGWJwuJuZB/giphy.gif' alt='Love each other' />
     <img width=200 height=200 src='https://media.giphy.com/media/WRWykrFkxJA6JJuTvc/giphy.gif' alt="It's ok to have a bad day" />
-</p>
+</div>

@@ -1,56 +1,37 @@
 name: Install
 description: Install dependencies
 
+inputs:
+  python-version:
+    description: Python version
+    default: "3.10"
+
 runs:
   using: composite
   steps:
     - name: Checkout the source code
-      uses: actions/checkout@v3
-
-    - name: Fetch yarn's cache directory path
-      id: yarn-cache-dir-path
-      shell: bash
-      run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> $GITHUB_ENV
-
-    - name: Set up yarn package caching
-      uses: actions/cache@v3
-      id: yarn-cache
-      with:
-        path: ${{ env.YARN_CACHE_DIR }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-
-    - name: Set the node version
-      uses: actions/setup-node@v3
-      with:
-        node-version: "18"
+      uses: actions/checkout@v4
 
     - name: Set the python version
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: "3.10"
+        python-version: ${{ inputs.python-version }}
+        cache: pip
+
+    - name: Install yarn dependencies
+      shell: bash
+      run: yarn install --immutable
+
+    - name: Install pip dependencies
+      shell: bash
+      run: pip install .[all]
 
     - name: Install apt dependencies
       shell: bash
-      run: sudo apt-get install -y cppcheck clang-format doxygen libsdl2-dev
+      run: sudo apt-get install -y cppcheck doxygen
 
-    - name: Install gtest
+    - name: Install conan dependencies
       shell: bash
       run: |
-        git clone https://github.com/google/googletest.git -b release-1.12.0
-        mkdir googletest/build
-        cd googletest/build
-        cmake ..
-        make
-        sudo make install
-        cd ../..
-        rm -rf googletest
-
-    - name: Install node dependencies
-      shell: bash
-      run: yarn install --frozen-lockfile
-
-    - name: Install python dependencies
-      shell: bash
-      run: pip install -r requirements.txt
+        conan profile detect
+        conan install .

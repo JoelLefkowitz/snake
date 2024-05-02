@@ -1,5 +1,5 @@
-#ifndef INPUTS_H
-#define INPUTS_H
+#ifndef SNAKE_ENGINE_INPUTS_HPP
+#define SNAKE_ENGINE_INPUTS_HPP
 
 #include "SDL2/SDL_events.h"
 

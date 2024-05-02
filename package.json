@@ -1,35 +1,12 @@
 {
-  "name": "snake",
-  "description": "An SDL2 implementation of the classic game Snake.",
-  "version": "0.3.3",
-  "private": false,
-  "license": "MIT",
-  "author": "Joel Lefkowitz",
-  "repository": "https://github.com/joellefkowitz/snake",
-  "homepage": "https://joellefkowitz.github.io/snake",
-  "keywords": [
-    "game",
-    "arcade"
-  ],
-  "metadata": {
-    "publisher": null,
-    "languages": [
-      "C++"
-    ],
-    "frameworks": [
-      "SDL2"
-    ],
-    "paradigms": [
-      "Event driven"
-    ],
-    "lifecycle": "Stable"
-  },
+  "packageManager": "yarn@4.1.1",
   "scripts": {
-    "postinstall": "husky install"
+    "postinstall": "husky"
   },
   "devDependencies": {
     "cspell": "^8.0.0",
     "husky": "^9.0.0",
+    "nodemon": "^3.1.0",
     "prettier": "^3.0.0"
   }
 }

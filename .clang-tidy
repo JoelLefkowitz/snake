@@ -1,0 +1,58 @@
+HeaderFilterRegex: ""
+
+Checks:
+  - -clanganalyzer-*
+  - -clang-diagnostic-unused-command-line-argument
+
+  - cppcoreguidelines-*
+  - -cppcoreguidelines-avoid-magic-numbers
+  - -cppcoreguidelines-avoid-non-const-global-variables
+  - -cppcoreguidelines-non-private-member-variables-in-classes
+  - -cppcoreguidelines-owning-memory
+
+  - google-*
+  - -google-build-using-namespace
+  - -google-readability-casting
+  - -google-readability-namespace-comments
+
+  - hicpp-*
+  - -hicpp-named-parameter
+  - -hicpp-signed-bitwise
+
+  - llvm-*
+  - -llvm-header-guard
+  - -llvm-include-order
+  - -llvm-namespace-comment
+
+  - misc-*
+  - -misc-const-correctness
+  - -misc-header-include-cycle
+  - -misc-include-cleaner
+  - -misc-non-private-member-variables-in-classes
+
+  - modernize-*
+  - -modernize-loop-convert
+  - -modernize-use-nodiscard
+  - -modernize-use-trailing-return-type
+
+  - performance-*
+  - -performance-avoid-endl
+  - -performance-for-range-copy
+
+  - portability-*
+
+  - readability-*
+  - -readability-function-cognitive-complexity
+  - -readability-identifier-length
+  - -readability-magic-numbers
+  - -readability-named-parameter
+
+CheckOptions:
+  - key: bugprone-suspicious-include.ImplementationFileExtensions
+    value: tpp
+
+  - key: cppcoreguidelines-special-member-functions.AllowSoleDefaultDtor
+    value: true
+
+  - key: hicpp-special-member-functions.AllowSoleDefaultDtor
+    value: true

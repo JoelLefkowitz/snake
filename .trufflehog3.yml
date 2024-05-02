@@ -1,0 +1,22 @@
+severity: low
+exclude:
+  - message: Giphy links
+    pattern: media\.giphy\.com
+
+  - message: Shield links
+    pattern: img\.shields\.io
+
+  - message: Git hashes
+    pattern: git\+.*\.git@
+
+  - message: Dependencies
+    paths:
+      - node_modules
+      - venv
+
+  - message: Tooling outputs
+    paths:
+      - docs/dist
+      - docs/*/dist
+      - yarn-error.log
+      - yarn.lock

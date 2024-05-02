@@ -2,8 +2,7 @@
 #include "graphics.hpp"
 #include <stdlib.h>
 
-Position::Position(int x, int y) : x(x), y(y) {
-}
+Position::Position(int x, int y) : x(x), y(y) {}
 
 Position Position::random_position() {
     int x = rand() % SIZE;
@@ -11,6 +10,4 @@ Position Position::random_position() {
     return {x, y};
 }
 
-bool Position::operator==(const Position &rhs) {
-    return x == rhs.x && y == rhs.y;
-}
+bool Position::operator==(const Position &rhs) { return x == rhs.x && y == rhs.y; }

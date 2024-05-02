@@ -7,8 +7,8 @@ AlignTrailingComments: true
 AllowAllArgumentsOnNextLine: false
 AllowAllConstructorInitializersOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
-AllowShortBlocksOnASingleLine: Empty
-AllowShortFunctionsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Always
+AllowShortFunctionsOnASingleLine: true
 AllowShortLambdasOnASingleLine: All
 AlwaysBreakTemplateDeclarations: true
 BinPackArguments: false
