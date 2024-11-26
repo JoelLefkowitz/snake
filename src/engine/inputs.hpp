@@ -1,7 +1,7 @@
 #ifndef SNAKE_ENGINE_INPUTS_HPP
 #define SNAKE_ENGINE_INPUTS_HPP
 
-#include "SDL2/SDL_events.h"
+#include <SDL2/SDL_events.h>
 
 struct KeyEvents {
     bool up;

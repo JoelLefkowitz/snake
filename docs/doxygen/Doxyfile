@@ -1,6 +1,6 @@
 INPUT                  = src docs
 RECURSIVE              = YES
-FILE_PATTERNS          = *.cpp *.hpp *.tpp *.md
+FILE_PATTERNS          = *.cpp *.hpp *.tpp
 EXCLUDE_PATTERNS       = test.cpp *.spec.cpp
 OUTPUT_DIRECTORY       = docs/doxygen
 XML_OUTPUT             = dist

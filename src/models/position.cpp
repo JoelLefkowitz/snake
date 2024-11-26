@@ -1,5 +1,5 @@
 #include "position.hpp"
-#include "graphics.hpp"
+#include "../engine/graphics.hpp"
 #include <stdlib.h>
 
 Position::Position(int x, int y) : x(x), y(y) {}

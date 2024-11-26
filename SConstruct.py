@@ -13,88 +13,85 @@ from walkmate import tree
 
 env = conan()
 
-runtime = Build(
-    "runtime",
+build = Build(
+    "build",
     tree("src", r"(?<!\.spec)\.cpp$", ["test.cpp"]),
-    flags("c++17"),
-)
-
-shared = Build(
-    "shared",
-    tree("src", r"(?<!\.spec)\.cpp$", ["main.cpp", "test.cpp"]),
-    flags("c++17"),
-    shared=True,
-    rename="snake",
+    flags("c++11"),
 )
 
 tests = Build(
     "tests",
     tree("src", r"\.cpp$", ["main.cpp"]),
-    flags("c++17"),
+    flags("c++11"),
     packages(["gtest"]),
+)
+
+start = Target(
+    "start",
+    build,
+)
+
+test = Target(
+    "test",
+    tests,
+    ["--gtest_brief"],
 )
 
 includes = tests.packages["CPPPATH"]
 
-clang_format = Script(
-    "clang-format",
-    ["-i", tree(".", r"\.(cpp|hpp|tpp)$")],
-)
-
-clang_tidy = Script(
-    "clang-tidy",
-    [
-        tree("src", r"\.(cpp)$"),
-        "--",
-        [f"-I{i}" for i in includes],
-    ],
+cspell = Script(
+    "cspell",
+    ["npx", "cspell", ".", "--dot", "--gitignore"],
 )
 
 cppclean = Script(
     "cppclean",
-    ["."],
+    ["cppclean", "."],
 )
 
 cppcheck = Script(
     "cppcheck",
     [
+        "cppcheck",
         tree("src", r"\.(cpp)$"),
         [f"-I{i}" for i in includes],
-        [f"--suppress=*:{i}/*" for i in includes],
         "--quiet",
         "--enable=all",
-        "--inline-suppr",
         "--suppressions-list=.cppcheck",
+        "--inline-suppr",
+        [f"--suppress=*:{i}/*" for i in includes],
     ],
 )
 
-doxygen = Script(
-    "doxygen",
-    ["-q"],
+clang_tidy = Script(
+    "clang-tidy",
+    ["clang-tidy", tree("src", r"\.(cpp)$"), "--", [f"-I{i}" for i in includes]],
 )
 
-trufflehog3 = Script("trufflehog3")
+trufflehog = Script(
+    "trufflehog",
+    ["trufflehog3"],
+)
 
-cspell = Script(
-    "cspell",
-    [".", "--dot", "--gitignore"],
-    ["npx"],
+clang_format = Script(
+    "clang-format",
+    ["clang-format", "-i", tree(".", r"\.(cpp|hpp|tpp)$")],
 )
 
 prettier = Script(
     "prettier",
-    [".", "--write"],
-    ["npx"],
+    ["npx", "prettier", ".", "--write"],
 )
 
 doxygen = Script(
     "doxygen",
-    ["docs/doxygen/Doxyfile"],
+    ["doxygen", "docs/doxygen/Doxyfile"],
 )
 
 breathe = Script(
-    "breathe-apidoc",
+    "breathe",
     [
+        "breathe-apidoc",
         "./docs/doxygen/dist",
         "--output-dir",
         "docs/sphinx/dist",
@@ -104,33 +101,29 @@ breathe = Script(
 
 sphinx = Script(
     "sphinx-build",
-    ["docs/sphinx", "docs/dist"],
+    ["sphinx-build", "docs/sphinx", "docs/dist"],
+)
+
+lint = Routine(
+    "lint",
+    [cspell, cppclean, cppcheck, clang_tidy, trufflehog],
+)
+
+fmt = Routine(
+    "format",
+    [clang_format, prettier],
+)
+
+docs = Routine(
+    "docs",
+    [doxygen, breathe, sphinx],
 )
 
 cli = Tasks(
-    [runtime, shared, tests],
-    [
-        Target("start", runtime),
-        Target("test", tests, ["--gtest_brief"]),
-    ],
-    [
-        clang_format,
-        clang_tidy,
-        cppcheck,
-        cppclean,
-        cspell,
-        doxygen,
-        prettier,
-        trufflehog3,
-        doxygen,
-        breathe,
-        sphinx,
-    ],
-    [
-        Routine("lint", [cspell, cppclean, cppcheck, trufflehog3]),
-        Routine("format", [clang_format, prettier]),
-        Routine("docs", [doxygen, breathe, sphinx]),
-    ],
+    [build, tests],
+    [start, test],
+    [*lint.scripts, *fmt.scripts, *docs.scripts],
+    [lint, fmt, docs],
 )
 
 cli.register(env)

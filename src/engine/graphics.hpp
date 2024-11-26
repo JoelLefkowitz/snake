@@ -1,10 +1,10 @@
 #ifndef SNAKE_ENGINE_GRAPHICS_HPP
 #define SNAKE_ENGINE_GRAPHICS_HPP
 
-#include "SDL2/SDL_render.h"
-#include "SDL2/SDL_stdinc.h"
-#include "SDL2/SDL_surface.h"
-#include "SDL2/SDL_video.h"
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_stdinc.h>
+#include <SDL2/SDL_surface.h>
+#include <SDL2/SDL_video.h>
 #include <string>
 #include <vector>
 
@@ -14,7 +14,7 @@ const int SIDE = 30;
 const int HEIGHT = 300;
 const int WIDTH  = 300;
 
-constIGHDPI | SDL_WINDOW_RESIZABLE;
+const Uint32 WINDOW_FLAGS   = SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE;
 const Uint32 RENDERER_FLAGS = SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED;
 
 struct RGB {

@@ -1,7 +1,7 @@
 #ifndef SNAKE_ENGINE_STATE_HPP
 #define SNAKE_ENGINE_STATE_HPP
 
-#include "position.hpp"
+#include "../models/position.hpp"
 #include <vector>
 
 struct KeyEvents;

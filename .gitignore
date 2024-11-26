@@ -6,6 +6,7 @@ __pycache__/
 *.egg-info/
 *.o
 *conan*.sh
+build/
 dist/
 metadata/
 node_modules/

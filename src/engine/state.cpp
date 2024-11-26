@@ -1,8 +1,8 @@
 #include "state.hpp"
+#include "../models/position.hpp"
+#include "../services/numbers.hpp"
 #include "graphics.hpp"
 #include "inputs.hpp"
-#include "numbers.hpp"
-#include "position.hpp"
 #include <algorithm>
 
 GameState::GameState()

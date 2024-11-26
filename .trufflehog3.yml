@@ -9,6 +9,9 @@ exclude:
   - message: Git hashes
     pattern: git\+.*\.git@
 
+  - message: Base64 encoded images
+    pattern: "data:image/svg\\+xml;base64,"
+
   - message: Dependencies
     paths:
       - node_modules
@@ -16,6 +19,7 @@ exclude:
 
   - message: Tooling outputs
     paths:
+      - docs/build
       - docs/dist
       - docs/*/dist
       - yarn-error.log

@@ -5,5 +5,6 @@
    :hidden:
    :glob: 
 
-   dist/class/*
-   dist/namespace/*
+   dist/namespacelist
+   dist/classlist
+   dist/filelist

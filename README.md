@@ -9,10 +9,6 @@ An SDL2 implementation of the classic game Snake.
 
 ![example](docs/example.gif)
 
-## Installing
-
-You can download the [sources](https://download-directory.github.io?url=https://github.com/joellefkowitz/snake/tree/master/src).
-
 ## Documentation
 
 Documentation and more detailed examples are hosted on [Github Pages](https://joellefkowitz.github.io/snake).

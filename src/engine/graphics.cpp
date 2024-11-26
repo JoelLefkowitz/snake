@@ -1,11 +1,11 @@
 #include "graphics.hpp"
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_error.h"
-#include "SDL2/SDL_hints.h"
-#include "SDL2/SDL_log.h"
-#include "SDL2/SDL_pixels.h"
-#include "SDL2/SDL_rect.h"
-#include "position.hpp"
+#include "../models/position.hpp"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_error.h>
+#include <SDL2/SDL_hints.h>
+#include <SDL2/SDL_log.h>
+#include <SDL2/SDL_pixels.h>
+#include <SDL2/SDL_rect.h>
 #include "state.hpp"
 #include <stddef.h>
 
