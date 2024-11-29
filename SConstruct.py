@@ -106,7 +106,7 @@ sphinx = Script(
 
 lint = Routine(
     "lint",
-    [cspell, cppclean, cppcheck, clang_tidy, trufflehog],
+    [cspell, cppclean, trufflehog],
 )
 
 fmt = Routine(
@@ -122,7 +122,7 @@ docs = Routine(
 cli = Tasks(
     [build, tests],
     [start, test],
-    [*lint.scripts, *fmt.scripts, *docs.scripts],
+    [*lint.scripts, *fmt.scripts, *docs.scripts, cppcheck, clang_tidy],
     [lint, fmt, docs],
 )
 

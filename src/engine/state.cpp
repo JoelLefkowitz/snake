@@ -69,7 +69,7 @@ void GameState::update_tail(const Position &prev_head) {
         score++;
     }
 
-    else if (tail.size() > 0) {
+    else if (!tail.empty()) {
         tail.erase(tail.begin());
         tail.push_back(prev_head);
     }

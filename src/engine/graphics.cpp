@@ -7,7 +7,7 @@
 #include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_rect.h>
 #include "state.hpp"
-#include <stddef.h>
+#include <cstddef>
 
 Graphics::Graphics()
     : window(
@@ -34,13 +34,14 @@ void Graphics::update(const GameState &game) {
 
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
 
-    if (!texture) {
+    if (texture == nullptr) {
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-vararg,hicpp-vararg)
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
     }
 
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, texture, NULL, NULL);
+    SDL_RenderCopy(renderer, texture, nullptr, nullptr);
     SDL_RenderPresent(renderer);
 }
 

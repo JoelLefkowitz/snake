@@ -34,8 +34,9 @@ class Graphics {
     SDL_Renderer *renderer = nullptr;
     SDL_Surface  *surface  = nullptr;
 
+    static RGB grey(int shade);
+
     void draw(const Position &pos, const RGB &rgb);
-    RGB  grey(int grey);
 
     void grid();
 

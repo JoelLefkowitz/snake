@@ -5,6 +5,6 @@
 
 const Uint32 FRAMERATE = 100;
 
-Uint32 step(Uint32 interval, void *param);
+Uint32 step(Uint32 _, void *__);
 
 #endif

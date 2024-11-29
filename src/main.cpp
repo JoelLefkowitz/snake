@@ -1,42 +1,44 @@
 #include "main.hpp"
+#include "engine/graphics.hpp"
+#include "engine/inputs.hpp"
+#include "engine/state.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_error.h>
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_log.h>
 #include <SDL2/SDL_timer.h>
-#include "engine/graphics.hpp"
-#include "engine/inputs.hpp"
-#include "engine/state.hpp"
-#include <stdlib.h>
+#include <cstdlib>
+#include <ctime>
 #include <string>
-#include <time.h>
 
 const Uint32 STEP = SDL_RegisterEvents(1);
 
-int main(int argc, char *args[]) {
-    srand(static_cast<unsigned int>(time(NULL)));
+int main() {
+    srand(static_cast<unsigned int>(time(nullptr)));
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-vararg,hicpp-vararg)
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL could not initialize. %s", SDL_GetError());
     }
 
     Graphics  graphics;
     GameState game;
-    KeyEvents inputs;
+
+    KeyEvents inputs{};
 
     SDL_Event event;
-    SDL_AddTimer(FRAMERATE, step, NULL);
+    SDL_AddTimer(FRAMERATE, step, nullptr);
 
     bool quit = false;
 
     while (!quit) {
-        if (SDL_PollEvent(&event)) {
+        if (SDL_PollEvent(&event) != 0) {
             if (event.type == SDL_QUIT) {
                 quit = true;
             }
 
             else if (event.type == SDL_KEYDOWN) {
-                inputs = keys(event);
+                inputs = keys();
             }
 
             else if (event.type == STEP) {
@@ -44,7 +46,7 @@ int main(int argc, char *args[]) {
                 graphics.update(game);
 
                 if (!game.over) {
-                    SDL_AddTimer(FRAMERATE, step, NULL);
+                    SDL_AddTimer(FRAMERATE, step, nullptr);
                 }
             }
         }
@@ -55,7 +57,9 @@ int main(int argc, char *args[]) {
     return std::string(SDL_GetError()).empty() ? 0 : 1;
 }
 
-Uint32 step(Uint32 interval, void *param) {
+
+// NOLINTNEXTLINE(misc-unused-parameters)
+Uint32 step(Uint32 _, void *__) {
     SDL_Event event;
     event.type = STEP;
     SDL_PushEvent(&event);
