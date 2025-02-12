@@ -4,6 +4,7 @@ from datetime import date
 from glob import glob
 
 project = "Snake"
+package = "snake"
 version = "0.3.3"
 
 project_copyright = f"{date.today().year} Joel Lefkowitz"
@@ -12,11 +13,11 @@ extensions = [
     "breathe",
     "myst_parser",
     "sphinxext.opengraph",
+    "sphinx.ext.graphviz",
 ]
 
 myst_all_links_external = True
 
-breathe_show_include = False
 breathe_default_project = project
 
 breathe_projects = {
@@ -28,6 +29,7 @@ breathe_default_members = (
     "private-members",
     "protected-members",
     "undoc-members",
+    "allow-dot-graphs",
 )
 
 theme = {
@@ -55,12 +57,23 @@ html_theme_options = {
 }
 
 
-def build(app, build):
+def filter_inputs(app, build):
+    for pattern in ["docs/**/*std.rst", "docs/**/file/*[c,t]pp.rst"]:
+        for path in glob(pattern, recursive=True):
+            os.remove(path)
+
+    for path in glob("docs/**/class/*.rst", recursive=True):
+        with open(path, "a") as stream:
+            stream.write(" " * 3 + ":allow-dot-graphs:\n")
+
+
+def copy_static(app, build):
     shutil.copytree("docs/images", "docs/dist/docs/images", dirs_exist_ok=True)
 
-    for path in glob(f"*.md"):
+    for path in glob("*.md"):
         shutil.copyfile(path, f"docs/dist/{path}")
 
 
 def setup(app):
-    app.connect("build-finished", build)
+    app.connect("config-inited", filter_inputs)
+    app.connect("build-finished", copy_static)

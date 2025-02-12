@@ -2,6 +2,10 @@ name: Install
 description: Install dependencies
 
 inputs:
+  node-version:
+    description: Node version
+    default: "18"
+
   python-version:
     description: Python version
     default: "3.10"
@@ -11,6 +15,16 @@ runs:
   steps:
     - name: Checkout the source code
       uses: actions/checkout@v4
+
+    - name: Enable corepack
+      shell: bash
+      run: corepack enable
+
+    - name: Set the node version
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: yarn
 
     - name: Set the python version
       uses: actions/setup-python@v5
@@ -28,10 +42,10 @@ runs:
 
     - name: Install apt dependencies
       shell: bash
-      run: sudo apt-get install -y cppcheck doxygen
+      run: sudo apt-get install -y doxygen
 
     - name: Install conan dependencies
       shell: bash
       run: |
         conan profile detect
-        conan install .
+        conan install . --build=missing

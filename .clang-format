@@ -1,15 +1,15 @@
 AlignAfterOpenBracket: BlockIndent
 AlignArrayOfStructures: Left
 AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: true
+AlignConsecutiveDeclarations: false
 AlignOperands: false
 AlignTrailingComments: true
 AllowAllArgumentsOnNextLine: false
 AllowAllConstructorInitializersOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
-AllowShortBlocksOnASingleLine: Always
-AllowShortFunctionsOnASingleLine: true
-AllowShortLambdasOnASingleLine: All
+AllowShortBlocksOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: false
+AllowShortLambdasOnASingleLine: false
 AlwaysBreakTemplateDeclarations: true
 BinPackArguments: false
 BinPackParameters: false
@@ -42,3 +42,7 @@ SeparateDefinitionBlocks: Always
 SortIncludes: CaseSensitive
 SortUsingDeclarations: true
 FixNamespaceComments: false
+InsertNewlineAtEOF: true
+RequiresClausePosition: OwnLine
+IndentRequiresClause: false
+InsertNewlineAtEOF: true

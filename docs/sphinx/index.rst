@@ -3,7 +3,7 @@
 
 .. toctree::
    :hidden:
-   :glob: 
+   :glob:
 
    dist/namespacelist
    dist/classlist

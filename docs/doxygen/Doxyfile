@@ -1,19 +1,13 @@
 INPUT                  = src docs
 RECURSIVE              = YES
-FILE_PATTERNS          = *.cpp *.hpp *.tpp
+FILE_PATTERNS          = *.hpp *.tpp *.cpp
 EXCLUDE_PATTERNS       = test.cpp *.spec.cpp
 OUTPUT_DIRECTORY       = docs/doxygen
 XML_OUTPUT             = dist
 
-EXTERNAL_PAGES         = NO
-EXTRACT_ALL            = YES
-EXTRACT_LOCAL_CLASSES  = YES
-GENERATE_HTML          = NO
 GENERATE_LATEX 		   = NO
-GENERATE_LEGEND        = NO
 GENERATE_XML           = YES
 GENERATE_TREEVIEW      = YES
-SHOW_FILES             = NO
 
 CLASS_GRAPH            = YES
 COLLABORATION_GRAPH    = YES

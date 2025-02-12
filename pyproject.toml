@@ -7,18 +7,18 @@ keywords = ["game", "arcade"]
 
 [project.optional-dependencies]
 all = [
-    "breathe==4.35.0",
-    "conan==2.2.2",
-    "cppclean@git+https://github.com/myint/cppclean.git@811ed459c9f650ad6135e9c73455136af8885716",
-    "furo==2024.1.29",
-    "matplotlib==3.8.4",
-    "miniscons==0.11.1",
-    "myst-parser==2.0.0",
-    "SCons==4.3.0",
-    "Sphinx==7.2.6",
-    "sphinxext-opengraph==0.9.1",
-    "trufflehog3==3.0.7",
-    "walkmate==1.5.0",
+    "breathe~=4.35.0",
+    "conan~=2.2.0",
+    "furo~=2024.1.0",
+    "matplotlib~=3.8.0",
+    "miniscons~=0.12.0",
+    "myst-parser~=2.0.0",
+    "SCons~=4.3.0",
+    "six~=1.17.0",
+    "Sphinx~=7.2.0",
+    "sphinxext-opengraph~=0.9.0",
+    "trufflehog3~=3.0.0",
+    "walkmate~=1.5.0",
 ]
 
 [project.license]
