@@ -2,9 +2,12 @@ import { logger } from "file-loggers";
 import { drop } from "ramda";
 import fs from "fs";
 import path from "path";
+import toml from "toml";
 
 const rewrite = (file: string, update: (text: string) => string): void =>
   fs.writeFileSync(file, update(fs.readFileSync(file, "utf8")));
+
+const { name } = toml.parse(fs.readFileSync("pyproject.toml", "utf8")).project;
 
 export default {
   name: "guards",
@@ -17,7 +20,7 @@ export default {
           const lines = text.split("\n");
           const guard = drop("#ifndef".length + 1, lines[0]);
 
-          const derived = ["funky"]
+          const derived = [name]
             .concat(path.relative("src", file).split(path.sep))
             .join("_")
             .replace(/\./g, "_")

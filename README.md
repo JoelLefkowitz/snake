@@ -57,6 +57,16 @@ To run formatters:
 scons format
 ```
 
+### Toolchains
+
+Scripts are defined in the `scripts` folder and can be invoked with `toolchains`:
+
+To generate header guards:
+
+```bash
+npx toolchains guards
+```
+
 ## Contributing
 
 Please read this repository's [Code of Conduct](CODE_OF_CONDUCT.md) which outlines our collaboration standards and the [Changelog](CHANGELOG.md) for details on breaking changes that have been made.

@@ -30,9 +30,9 @@ class Graphics {
   private:
     std::string title = "Snake";
 
-    SDL_Window   *window   = nullptr;
+    SDL_Window *window     = nullptr;
     SDL_Renderer *renderer = nullptr;
-    SDL_Surface  *surface  = nullptr;
+    SDL_Surface *surface   = nullptr;
 
     static RGB grey(int shade);
 

@@ -1,12 +1,12 @@
 #include "graphics.hpp"
 #include "../models/position.hpp"
+#include "state.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_error.h>
 #include <SDL2/SDL_hints.h>
 #include <SDL2/SDL_log.h>
 #include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_rect.h>
-#include "state.hpp"
 #include <cstddef>
 
 Graphics::Graphics()
@@ -54,7 +54,9 @@ void Graphics::draw(const Position &pos, const RGB &rgb) {
     );
 }
 
-RGB Graphics::grey(int shade) { return {shade, shade, shade}; }
+RGB Graphics::grey(int shade) {
+    return {shade, shade, shade};
+}
 
 void Graphics::grid() {
     for (int i = 0; i < SIZE; ++i) {
@@ -64,9 +66,13 @@ void Graphics::grid() {
     }
 }
 
-void Graphics::bean(const Position &pos) { draw(pos, {0, 50, 180}); }
+void Graphics::bean(const Position &pos) {
+    draw(pos, {0, 50, 180});
+}
 
-void Graphics::head(const Position &pos) { draw(pos, {20, 100, 20}); }
+void Graphics::head(const Position &pos) {
+    draw(pos, {20, 100, 20});
+}
 
 void Graphics::tail(const std::vector<Position> &segments) {
     for (Position pos : segments) {

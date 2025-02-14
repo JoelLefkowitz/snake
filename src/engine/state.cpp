@@ -11,7 +11,8 @@ GameState::GameState()
     , tail({})
     , heading(RIGHT)
     , over(false)
-    , score(0) {}
+    , score(0) {
+}
 
 void GameState::update(const KeyEvents &keys) {
     update_heading(keys);
@@ -82,5 +83,7 @@ void GameState::update_bean() {
 }
 
 void GameState::check_game_over() {
-    over = std::any_of(tail.begin(), tail.end(), [&](const Position &piece) { return head == piece; });
+    over = std::any_of(tail.begin(), tail.end(), [&](const Position &piece) {
+        return head == piece;
+    });
 }

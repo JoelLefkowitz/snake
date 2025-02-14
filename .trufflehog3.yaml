@@ -16,16 +16,16 @@ exclude:
     paths:
       - node_modules
       - venv
-  
+
   - message: Versioning
     paths:
       - conandata.yml
 
   - message: Tooling outputs
     paths:
+      - build
       - CMakeCache.txt
-      - docs/dist
-      - docs/*/dist
-      - docs/*/html
+      - dist
+      - html
       - yarn-error.log
       - yarn.lock

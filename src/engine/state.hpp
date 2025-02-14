@@ -19,14 +19,14 @@ class GameState {
     void check_game_over();
 
   public:
-    Position              bean;
-    Position              head;
+    Position bean;
+    Position head;
     std::vector<Position> tail;
 
     Direction heading;
 
     bool over;
-    int  score;
+    int score;
 
     GameState();
     void update(const KeyEvents &keys);

@@ -11,7 +11,9 @@ from miniscons import (
 )
 from walkmate import tree
 
-env = conan(source="build/conan/SConscript_conandeps")
+conandeps = "build/conan/SConscript_conandeps"
+
+env = conan(source=conandeps)
 
 build = Build(
     "build",
@@ -23,7 +25,7 @@ tests = Build(
     "tests",
     tree("src", r"\.cpp$", ["main.cpp"]),
     flags("c++11"),
-    packages(["gtest"]),
+    packages(["gtest"], source=conandeps),
 )
 
 start = Target(
@@ -42,20 +44,6 @@ includes = tests.packages["CPPPATH"]
 cspell = Script(
     "cspell",
     ["npx", "cspell", ".", "--dot", "--gitignore"],
-)
-
-cppcheck = Script(
-    "cppcheck",
-    [
-        "cppcheck",
-        tree("src", r"\.(cpp)$"),
-        [f"-I{i}" for i in includes],
-        "--quiet",
-        "--enable=all",
-        "--suppressions-list=.cppcheck",
-        "--inline-suppr",
-        [f"--suppress=*:{i}/*" for i in includes],
-    ],
 )
 
 clang_tidy = Script(
@@ -101,7 +89,7 @@ sphinx = Script(
 
 lint = Routine(
     "lint",
-    [cspell, cppcheck, trufflehog],
+    [cspell, trufflehog],
 )
 
 fmt = Routine(
@@ -117,7 +105,7 @@ docs = Routine(
 cli = Tasks(
     [build, tests],
     [start, test],
-    [*lint.scripts, *fmt.scripts, *docs.scripts, cppcheck, clang_tidy],
+    [*lint.scripts, *fmt.scripts, *docs.scripts, clang_tidy],
     [lint, fmt, docs],
 )
 

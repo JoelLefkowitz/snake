@@ -45,4 +45,3 @@ FixNamespaceComments: false
 InsertNewlineAtEOF: true
 RequiresClausePosition: OwnLine
 IndentRequiresClause: false
-InsertNewlineAtEOF: true

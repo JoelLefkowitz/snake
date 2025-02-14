@@ -21,7 +21,7 @@ int main() {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL could not initialize. %s", SDL_GetError());
     }
 
-    Graphics  graphics;
+    Graphics graphics;
     GameState game;
 
     KeyEvents inputs{};
@@ -56,7 +56,6 @@ int main() {
 
     return std::string(SDL_GetError()).empty() ? 0 : 1;
 }
-
 
 // NOLINTNEXTLINE(misc-unused-parameters)
 Uint32 step(Uint32 _, void *__) {
