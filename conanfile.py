@@ -1,5 +1,4 @@
 import os
-
 from conan import ConanFile
 from conan.tools.scons import SConsDeps
 from conan.tools.layout import basic_layout
